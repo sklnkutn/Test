@@ -31,6 +31,7 @@ EXTENSIONS=(
 # ControlNet-related extensions (merged into EXTENSIONS automatically)
 # Can also be set via CONTROLNET_EXTENSIONS env var (semicolon-separated)
 CONTROLNET_EXTENSIONS_DEFAULT=(
+    #SD webui controlnet ~150 MB
     "https://github.com/Mikubill/sd-webui-controlnet"
 )
 
@@ -52,6 +53,7 @@ HF_MODELS_DEFAULT=(
 # CivitAI models (requires CIVITAI_TOKEN for some models)
 # Use trailing / for output path to use content-disposition filename
 CIVITAI_MODELS_DEFAULT=(
+    #WAI ILL V16.0 6,46 GB
     "https://civitai.com/api/download/models/2514310?type=Model&format=SafeTensor&size=pruned&fp=fp16
     |$MODELS_DIR/Stable-diffusion/waiIllustriousSDXL_v160.safetensors"
 )
