@@ -31,7 +31,7 @@ EXTENSIONS=(
 # ControlNet-related extensions (merged into EXTENSIONS automatically)
 # Can also be set via CONTROLNET_EXTENSIONS env var (semicolon-separated)
 CONTROLNET_EXTENSIONS_DEFAULT=(
-    #"https://github.com/Mikubill/sd-webui-controlnet"
+    "https://github.com/Mikubill/sd-webui-controlnet"
 )
 
 # Model downloads use "URL|OUTPUT_PATH" format
@@ -60,7 +60,27 @@ CIVITAI_MODELS_DEFAULT=(
 # Recommended path: $MODELS_DIR/Lora/
 # Can also be set via LORA_MODELS env var
 LORA_MODELS_DEFAULT=(
-    #"https://civitai.com/api/download/models/12345|$MODELS_DIR/Lora/"
+    #Detailer IL V2 218 MB
+    "https://civitai.com/api/download/models/1736373?type=Model&format=SafeTensor|$MODELS_DIR/Lora/detailer_v2_il.safetensors"
+    #Realistic filter V1 55 MB
+    "https://civitai.com/api/download/models/1124771?type=Model&format=SafeTensor|$MODELS_DIR/Lora/realistic_filter_v1_il.safetensors"
+    #Hyperrealistic V4 ILL 435 MB
+    "https://civitai.com/api/download/models/1914557?type=Model&format=SafeTensor|$MODELS_DIR/Lora/hyperrealistic_v4_ill.safetensors"
+    #Niji semi realism V3.5 ILL 435 MB
+    "https://civitai.com/api/download/models/1882710?type=Model&format=SafeTensor|$MODELS_DIR/Lora/niji_semi_realism_v35.safetensors"
+    #ATNR Style ILL V1.1 350 MB
+    "https://civitai.com/api/download/models/1711464?type=Model&format=SafeTensor|$MODELS_DIR/Lora/atnr_style_ill_v1.1.safetensors"
+    #Face Enhancer Ill 218 MB
+    "https://civitai.com/api/download/models/1839268?type=Model&format=SafeTensor|$MODELS_DIR/Lora/face_enhancer_ill.safetensors"
+    #Smooth Detailer Booster V4 243 MB
+    "https://civitai.com/api/download/models/2196453?type=Model&format=SafeTensor|$MODELS_DIR/Lora/smooth_detailer_booster_v4.safetensors"
+    #USNR Style V-pred 157 MB
+    "https://civitai.com/api/download/models/2555444?type=Model&format=SafeTensor|$MODELS_DIR/Lora/usnr_style_v_pred.safetensors"
+    #748cm Style V1 243 MB
+    "https://civitai.com/api/download/models/1056404?type=Model&format=SafeTensor|$MODELS_DIR/Lora/748cm_style_v1.safetensors"
+    #Velvet's Mythic Fantasy Styles IL 218 MB
+    "https://civitai.com/api/download/models/2620790?type=Model&format=SafeTensor|$MODELS_DIR/Lora/velvets_mythic_fantasy_styles_il.safetensors"
+    #"https://civitai.com/api/download/models/|$MODELS_DIR/Lora/"
 )
 
 # ControlNet/OpenPose models (URL|OUTPUT_PATH)
@@ -68,7 +88,18 @@ LORA_MODELS_DEFAULT=(
 # Recommended path: $MODELS_DIR/ControlNet/
 # Can also be set via CONTROLNET_MODELS env var
 CONTROLNET_MODELS_DEFAULT=(
-    #"https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/t2i-adapter_xl_openpose.safetensors|$MODELS_DIR/ControlNet/t2i-adapter_xl_openpose.safetensors"
+    #t2i-adapter_xl_openpose 151 MB
+    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/t2i-adapter_xl_openpose.safetensors|$MODELS_DIR/ControlNet/t2i-adapter_xl_openpose.safetensors"
+    #t2i-adapter_xl_canny 148 MB
+    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/t2i-adapter_xl_canny.safetensors|$MODELS_DIR/ControlNet/t2i-adapter_xl_canny.safetensors"
+    #t2i-adapter_xl_sketch 148 MB
+    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/t2i-adapter_xl_sketch.safetensors|$MODELS_DIR/ControlNet/t2i-adapter_xl_sketch.safetensors"
+    #t2i-adapter_diffusers_xl_depth_midas 151 MB
+    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/t2i-adapter_diffusers_xl_depth_midas.safetensors|$MODELS_DIR/ControlNet/t2i-adapter_diffusers_xl_depth_midas.safetensors"
+    #t2i-adapter_diffusers_xl_depth_zoe 151 MB
+    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/t2i-adapter_diffusers_xl_depth_zoe.safetensors|$MODELS_DIR/ControlNet/t2i-adapter_diffusers_xl_depth_zoe.safetensors"
+    #t2i-adapter_diffusers_xl_lineart 151 MB
+    "https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/t2i-adapter_diffusers_xl_lineart.safetensors|$MODELS_DIR/ControlNet/t2i-adapter_diffusers_xl_lineart.safetensors"
 )
 
 # Generic wget downloads (no auth)
