@@ -513,7 +513,12 @@ install_extensions() {
             log "Extension already installed: $dir"
         else
             log "Installing extension: $repo"
-            git clone "$repo" "$path" --recursive
+            # Use shallow clone to avoid downloading full git history for large extensions
+            git clone "$repo" "$path" \
+                --depth 1 \
+                --single-branch \
+                --recurse-submodules \
+                --shallow-submodules
         fi
     done
 }
