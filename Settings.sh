@@ -28,6 +28,12 @@ EXTENSIONS=(
     #"https://github.com/example/extension-name"
 )
 
+# ControlNet-related extensions (merged into EXTENSIONS automatically)
+# Can also be set via CONTROLNET_EXTENSIONS env var (semicolon-separated)
+CONTROLNET_EXTENSIONS_DEFAULT=(
+    #"https://github.com/Mikubill/sd-webui-controlnet"
+)
+
 # Model downloads use "URL|OUTPUT_PATH" format
 # - If OUTPUT_PATH ends with /, filename is extracted via content-disposition
 # - Can also be set via environment variables (semicolon-separated entries)
@@ -48,6 +54,21 @@ HF_MODELS_DEFAULT=(
 CIVITAI_MODELS_DEFAULT=(
     "https://civitai.com/api/download/models/2514310?type=Model&format=SafeTensor&size=pruned&fp=fp16
     |$MODELS_DIR/Stable-diffusion/waiIllustriousSDXL_v160.safetensors"
+)
+
+# LoRA models (URL|OUTPUT_PATH)
+# Recommended path: $MODELS_DIR/Lora/
+# Can also be set via LORA_MODELS env var
+LORA_MODELS_DEFAULT=(
+    #"https://civitai.com/api/download/models/12345|$MODELS_DIR/Lora/"
+)
+
+# ControlNet/OpenPose models (URL|OUTPUT_PATH)
+# Supports both HuggingFace and CivitAI URLs
+# Recommended path: $MODELS_DIR/ControlNet/
+# Can also be set via CONTROLNET_MODELS env var
+CONTROLNET_MODELS_DEFAULT=(
+    #"https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/t2i-adapter_xl_openpose.safetensors|$MODELS_DIR/ControlNet/t2i-adapter_xl_openpose.safetensors"
 )
 
 # Generic wget downloads (no auth)
@@ -427,11 +448,14 @@ install_pip_packages() {
 
 # Install extensions
 install_extensions() {
-    # Merge defaults with env var (comments already filtered)
+    # Merge defaults with env vars (comments already filtered)
     local -a extensions=()
     while IFS= read -r -d '' entry; do
         [[ -n "$entry" ]] && extensions+=("$entry")
     done < <(merge_with_env "EXTENSIONS" "${EXTENSIONS[@]}")
+    while IFS= read -r -d '' entry; do
+        [[ -n "$entry" ]] && extensions+=("$entry")
+    done < <(merge_with_env "CONTROLNET_EXTENSIONS" "${CONTROLNET_EXTENSIONS_DEFAULT[@]}")
 
     if [[ ${#extensions[@]} -eq 0 ]]; then
         log "No extensions to install"
@@ -461,9 +485,73 @@ install_extensions() {
     done
 }
 
+# Ensure target model directories exist before downloads
+ensure_model_directories() {
+    log "Ensuring model directories exist..."
+
+    local -a required_dirs=(
+        "$MODELS_DIR/Stable-diffusion"
+        "$MODELS_DIR/Lora"
+        "$MODELS_DIR/ControlNet"
+    )
+
+    local target_path
+    for target_path in "$@"; do
+        [[ -z "${target_path// }" ]] && continue
+
+        # Trim whitespace
+        target_path="${target_path#"${target_path%%[![:space:]]*}"}"
+        target_path="${target_path%"${target_path##*[![:space:]]}"}"
+
+        # If entry uses trailing slash treat as directory, otherwise use dirname(file)
+        if [[ "$target_path" == */ ]]; then
+            required_dirs+=("${target_path%/}")
+        else
+            required_dirs+=("$(dirname "$target_path")")
+        fi
+    done
+
+    # Deduplicate and create
+    printf '%s\n' "${required_dirs[@]}" | awk 'NF && !seen[$0]++' | while IFS= read -r dir; do
+        mkdir -p "$dir"
+        log "Directory ready: $dir"
+    done
+}
+
+# Decide auth/downloader for a URL when auth_type is "auto"
+# Output: "hf", "civitai", or ""
+autodetect_auth_type() {
+    local url="$1"
+
+    if [[ "$url" == *"huggingface.co"* ]]; then
+        echo "hf"
+    elif [[ "$url" == *"civitai.com"* ]]; then
+        echo "civitai"
+    else
+        echo ""
+    fi
+}
+
+# Resolve HF output path when caller provides directory path ending with '/'
+# Args: URL OUTPUT_PATH
+# Output: resolved full file path
+resolve_hf_output_path() {
+    local url="$1"
+    local output_path="$2"
+
+    if [[ "$output_path" == */ ]]; then
+        local filename
+        filename="${url%%\?*}"
+        filename="${filename##*/}"
+        echo "${output_path}${filename}"
+    else
+        echo "$output_path"
+    fi
+}
+
 # Download models from an array with specified auth type
 # Args: array_name auth_type
-# auth_type: "hf" uses hf CLI, "civitai" or "" uses wget
+# auth_type: "hf", "civitai", "", or "auto" (detect by URL)
 download_models() {
     local -n model_array=$1
     local auth_type="$2"
@@ -485,10 +573,17 @@ download_models() {
         log "Queuing download: $url -> $output_path"
 
         # Use appropriate downloader based on auth type
-        if [[ "$auth_type" == "hf" ]]; then
-            download_hf_file "$url" "$output_path" &
+        local effective_auth_type="$auth_type"
+        if [[ "$effective_auth_type" == "auto" ]]; then
+            effective_auth_type=$(autodetect_auth_type "$url")
+        fi
+
+        if [[ "$effective_auth_type" == "hf" ]]; then
+            local hf_output_path
+            hf_output_path=$(resolve_hf_output_path "$url" "$output_path")
+            download_hf_file "$url" "$hf_output_path" &
         else
-            download_file "$url" "$output_path" "$auth_type" &
+            download_file "$url" "$output_path" "$effective_auth_type" &
         fi
         pids+=($!)
     done
@@ -560,6 +655,16 @@ main() {
         [[ -n "$entry" ]] && civitai_models+=("$entry")
     done < <(merge_with_env "CIVITAI_MODELS" "${CIVITAI_MODELS_DEFAULT[@]}")
 
+    local -a lora_models=()
+    while IFS= read -r -d '' entry; do
+        [[ -n "$entry" ]] && lora_models+=("$entry")
+    done < <(merge_with_env "LORA_MODELS" "${LORA_MODELS_DEFAULT[@]}")
+
+    local -a controlnet_models=()
+    while IFS= read -r -d '' entry; do
+        [[ -n "$entry" ]] && controlnet_models+=("$entry")
+    done < <(merge_with_env "CONTROLNET_MODELS" "${CONTROLNET_MODELS_DEFAULT[@]}")
+
     local -a wget_downloads=()
     while IFS= read -r -d '' entry; do
         [[ -n "$entry" ]] && wget_downloads+=("$entry")
@@ -568,6 +673,8 @@ main() {
     # Log what we're going to download
     log "HF_MODELS: ${#hf_models[@]} entries"
     log "CIVITAI_MODELS: ${#civitai_models[@]} entries"
+    log "LORA_MODELS: ${#lora_models[@]} entries"
+    log "CONTROLNET_MODELS: ${#controlnet_models[@]} entries"
     log "WGET_DOWNLOADS: ${#wget_downloads[@]} entries"
 
     # Clean up any leftover semaphores and create fresh directory
@@ -577,6 +684,17 @@ main() {
     # Install packages first
     install_apt_packages
     install_pip_packages
+
+    # Ensure default and configured target folders exist before installing/downloading
+    local -a all_output_paths=()
+    local entry output_path
+    for entry in "${hf_models[@]}" "${civitai_models[@]}" "${lora_models[@]}" "${controlnet_models[@]}" "${wget_downloads[@]}"; do
+        output_path="${entry##*|}"
+        output_path="${output_path#"${output_path%%[![:space:]]*}"}"
+        output_path="${output_path%"${output_path##*[![:space:]]}"}"
+        [[ -n "$output_path" ]] && all_output_paths+=("$output_path")
+    done
+    ensure_model_directories "${all_output_paths[@]}"
 
     # Install extensions
     install_extensions
@@ -592,6 +710,14 @@ main() {
 
     if [[ ${#civitai_models[@]} -gt 0 ]]; then
         download_models civitai_models "civitai" || download_failed=1
+    fi
+
+    if [[ ${#lora_models[@]} -gt 0 ]]; then
+        download_models lora_models "civitai" || download_failed=1
+    fi
+
+    if [[ ${#controlnet_models[@]} -gt 0 ]]; then
+        download_models controlnet_models "auto" || download_failed=1
     fi
 
     if [[ ${#wget_downloads[@]} -gt 0 ]]; then
