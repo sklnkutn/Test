@@ -1,0 +1,13 @@
+# Пример: sudo cp logrotate.vastai-monitor.conf /etc/logrotate.d/vastai-monitor
+# Проверь, что путь совпадает с LOG_FILE из config.txt
+
+/workspace/Test/logs/instance_check.log {
+    daily
+    rotate 14
+    size 5M
+    missingok
+    notifempty
+    compress
+    delaycompress
+    copytruncate
+}

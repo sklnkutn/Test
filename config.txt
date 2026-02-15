@@ -1,0 +1,30 @@
+# --- Служебные параметры скрипта ---
+MAX_PRICE=0.1
+BOT_TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
+CHAT_ID=123456789
+CHECK_INTERVAL=300
+TEMPLATE_HASH=4e17788f74f075dd9aab7d0d4427968f
+
+# Логирование / состояние
+LOG_FILE=./logs/instance_check.log
+LOG_TAG=vastai-monitor
+DEDUP_CYCLES=5
+DEDUP_STATE_FILE=./state/dedup_state.txt
+
+# Необязательные параметры (если не указаны, берутся defaults из скрипта)
+SEARCH_TYPE=on-demand
+MAX_RESULTS=3
+DISK_GB=40
+IMAGE_NAME=vastai/pytorch
+TG_PARSE_MODE=Markdown
+
+# --- Фильтры Vast.ai для search offers ---
+disk_space>=30
+cuda_max_good>=12.9
+inet_up_cost<=0.5
+inet_down_cost<=0.5
+num_gpus=1
+gpu_ram>20000
+inet_up>=100
+inet_down>=100
+verified=true
