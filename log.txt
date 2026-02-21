@@ -1,0 +1,215 @@
+[2026-02-21 15:59:03] WARN: unable to fetch ControlNet model list: 404 Client Error: Not Found for url: http://127.0.0.1:17860/controlnet/model_list
+[2026-02-21 15:59:03] WARN: unable to fetch Forge checkpoint list: 404 Client Error: Not Found for url: http://127.0.0.1:17860/sdapi/v1/sd-models
+[2026-02-21 15:59:05] WARN: unable to fetch ControlNet model list: 404 Client Error: Not Found for url: http://127.0.0.1:17860/controlnet/model_list
+[2026-02-21 15:59:05] Forge checkpoints fetched: 1
+[2026-02-21 15:59:09] ControlNet models fetched: 10
+[2026-02-21 15:59:09] Forge checkpoints fetched: 1
+[2026-02-21 15:59:09] Loaded prompts file: /content/gen/Prompts.xlsx. Rows for generation: 26
+[2026-02-21 15:59:09] Image search dirs: ['/content/gen/Images', '/content/gen/images']
+[2026-02-21 15:59:09] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 15:59:09] cn1_model: model alias 't2i-adapter_xl_openpose' -> 't2i-adapter_xl_openpose [18cb12c1]'
+[2026-02-21 15:59:09] #1 request dump: /content/volume/request_dumps/request_0001.json
+[2026-02-21 15:59:09] #1 attempt 1/2: sending request
+[2026-02-21 16:00:53] #1 OK images=1 expected=1
+[2026-02-21 16:00:53] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:00:53] cn1_model: model alias 't2i-adapter_xl_openpose' -> 't2i-adapter_xl_openpose [18cb12c1]'
+[2026-02-21 16:00:53] #2 request dump: /content/volume/request_dumps/request_0002.json
+[2026-02-21 16:00:53] #2 attempt 1/2: sending request
+[2026-02-21 16:01:28] #2 OK images=1 expected=1
+[2026-02-21 16:01:28] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:01:28] cn1_model: model alias 't2i-adapter_xl_openpose' -> 't2i-adapter_xl_openpose [18cb12c1]'
+[2026-02-21 16:01:28] #3 request dump: /content/volume/request_dumps/request_0003.json
+[2026-02-21 16:01:28] #3 attempt 1/2: sending request
+[2026-02-21 16:02:05] #3 OK images=1 expected=1
+[2026-02-21 16:02:05] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:02:05] cn1_model: model alias 't2i-adapter_xl_openpose' -> 't2i-adapter_xl_openpose [18cb12c1]'
+[2026-02-21 16:02:05] #4 request dump: /content/volume/request_dumps/request_0004.json
+[2026-02-21 16:02:05] #4 attempt 1/2: sending request
+[2026-02-21 16:02:40] #4 OK images=1 expected=1
+[2026-02-21 16:02:41] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:02:41] cn1_model: model alias 't2i-adapter_xl_openpose' -> 't2i-adapter_xl_openpose [18cb12c1]'
+[2026-02-21 16:02:41] #5 request dump: /content/volume/request_dumps/request_0005.json
+[2026-02-21 16:02:41] #5 attempt 1/2: sending request
+[2026-02-21 16:03:25] #5 OK images=1 expected=1
+[2026-02-21 16:03:25] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:03:25] cn1_model: model alias 't2i-adapter_xl_canny' -> 't2i-adapter_xl_canny [ff8b24b1]'
+[2026-02-21 16:03:25] #6 request dump: /content/volume/request_dumps/request_0006.json
+[2026-02-21 16:03:25] #6 attempt 1/2: sending request
+[2026-02-21 16:03:57] #6 OK images=1 expected=1
+[2026-02-21 16:03:57] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:03:57] cn1_model: model alias 't2i-adapter_xl_sketch' -> 't2i-adapter_xl_sketch [ff9b22fb]'
+[2026-02-21 16:03:57] #7 request dump: /content/volume/request_dumps/request_0007.json
+[2026-02-21 16:03:57] #7 attempt 1/2: sending request
+[2026-02-21 16:04:27] #7 OK images=1 expected=1
+[2026-02-21 16:04:27] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:04:27] cn1_model: model alias 't2i-adapter_xl_sketch' -> 't2i-adapter_xl_sketch [ff9b22fb]'
+[2026-02-21 16:04:27] #8 request dump: /content/volume/request_dumps/request_0008.json
+[2026-02-21 16:04:27] #8 attempt 1/2: sending request
+[2026-02-21 16:04:57] #8 OK images=1 expected=1
+[2026-02-21 16:04:57] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:04:57] cn1_model: model alias 't2i-adapter_xl_sketch' -> 't2i-adapter_xl_sketch [ff9b22fb]'
+[2026-02-21 16:04:57] #9 request dump: /content/volume/request_dumps/request_0009.json
+[2026-02-21 16:04:57] #9 attempt 1/2: sending request
+[2026-02-21 16:05:31] #9 OK images=1 expected=1
+[2026-02-21 16:05:31] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:05:31] cn1_model: model alias 't2i-adapter_xl_sketch' -> 't2i-adapter_xl_sketch [ff9b22fb]'
+[2026-02-21 16:05:31] #10 request dump: /content/volume/request_dumps/request_0010.json
+[2026-02-21 16:05:31] #10 attempt 1/2: sending request
+[2026-02-21 16:06:03] #10 OK images=1 expected=1
+[2026-02-21 16:06:03] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:06:03] cn1_model: model alias 't2i-adapter_xl_sketch' -> 't2i-adapter_xl_sketch [ff9b22fb]'
+[2026-02-21 16:06:03] #11 request dump: /content/volume/request_dumps/request_0011.json
+[2026-02-21 16:06:03] #11 attempt 1/2: sending request
+[2026-02-21 16:06:34] #11 OK images=1 expected=1
+[2026-02-21 16:06:34] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:06:34] cn1_model: model alias 't2i-adapter_diffusers_xl_depth_midas' -> 't2i-adapter_diffusers_xl_depth_midas [9c183166]'
+[2026-02-21 16:06:34] #12 request dump: /content/volume/request_dumps/request_0012.json
+[2026-02-21 16:06:34] #12 attempt 1/2: sending request
+[2026-02-21 16:07:35] #12 OK images=1 expected=1
+[2026-02-21 16:07:35] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:07:35] cn1_model: model alias 't2i-adapter_diffusers_xl_depth_zoe' -> 't2i-adapter_diffusers_xl_depth_zoe [cc102381]'
+[2026-02-21 16:07:35] #13 request dump: /content/volume/request_dumps/request_0013.json
+[2026-02-21 16:07:35] #13 attempt 1/2: sending request
+[2026-02-21 16:08:54] #13 OK images=1 expected=1
+[2026-02-21 16:08:55] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:08:55] cn1_model: model alias 't2i-adapter_diffusers_xl_lineart' -> 't2i-adapter_diffusers_xl_lineart [bae0efef]'
+[2026-02-21 16:08:55] #14 request dump: /content/volume/request_dumps/request_0014.json
+[2026-02-21 16:08:55] #14 attempt 1/2: sending request
+[2026-02-21 16:09:25] #14 OK images=1 expected=1
+[2026-02-21 16:09:25] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:09:25] cn1_model: model alias 't2i-adapter_diffusers_xl_lineart' -> 't2i-adapter_diffusers_xl_lineart [bae0efef]'
+[2026-02-21 16:09:25] #15 request dump: /content/volume/request_dumps/request_0015.json
+[2026-02-21 16:09:25] #15 attempt 1/2: sending request
+[2026-02-21 16:09:58] #15 OK images=1 expected=1
+[2026-02-21 16:09:59] ARCHIVE created: /content/volume/outputs_part_0015_20260221_160958.zip. OUTPUTS_DIR cleaned.
+[2026-02-21 16:09:59] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:09:59] cn1_model: model alias 't2i-adapter_diffusers_xl_lineart' -> 't2i-adapter_diffusers_xl_lineart [bae0efef]'
+[2026-02-21 16:09:59] #16 request dump: /content/volume/request_dumps/request_0016.json
+[2026-02-21 16:09:59] #16 attempt 1/2: sending request
+[2026-02-21 16:10:31] #16 OK images=1 expected=1
+[2026-02-21 16:10:31] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:10:31] cn1_model: model alias 't2i-adapter_diffusers_xl_lineart' -> 't2i-adapter_diffusers_xl_lineart [bae0efef]'
+[2026-02-21 16:10:31] #17 request dump: /content/volume/request_dumps/request_0017.json
+[2026-02-21 16:10:31] #17 attempt 1/2: sending request
+[2026-02-21 16:11:08] #17 OK images=1 expected=1
+[2026-02-21 16:11:08] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:11:08] cn1_model: model alias 'diffusers_xl_canny_full' -> 'diffusers_xl_canny_full [2b69fca4]'
+[2026-02-21 16:11:08] #18 request dump: /content/volume/request_dumps/request_0018.json
+[2026-02-21 16:11:08] #18 attempt 1/2: sending request
+[2026-02-21 16:12:02] #18 FAIL attempt 1: dead Forge process detected: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+[2026-02-21 16:12:05] Forge restart: stopped old process PID=3193
+[2026-02-21 16:12:05] Forge restarted with PID=8783. Waiting for API...
+[2026-02-21 16:12:56] WARN: unable to fetch ControlNet model list: 404 Client Error: Not Found for url: http://127.0.0.1:17860/controlnet/model_list
+[2026-02-21 16:12:56] Forge checkpoints fetched: 1
+[2026-02-21 16:12:56] #18 attempt 2/2: sending request
+[2026-02-21 16:12:57] #18 FAIL syntax/validation: 500 {"error":"IndexError","detail":"","body":"","message":"list assignment index out of range"}
+[2026-02-21 16:12:57] #18 FAIL payload: /content/volume/request_dumps/request_0018.json
+[2026-02-21 16:12:57] AVAILABLE PARAMS DUMP START
+{
+  "prompt": "unknown",
+  "negative_prompt": "unknown",
+  "styles": "unknown",
+  "seed": "unknown",
+  "subseed": "unknown",
+  "subseed_strength": "unknown",
+  "seed_resize_from_h": "unknown",
+  "seed_resize_from_w": "unknown",
+  "sampler_name": "unknown",
+  "scheduler": "unknown",
+  "batch_size": "unknown",
+  "n_iter": "unknown",
+  "steps": "unknown",
+  "cfg_scale": "unknown",
+  "distilled_cfg_scale": "unknown",
+  "width": "unknown",
+  "height": "unknown",
+  "restore_faces": "unknown",
+  "tiling": "unknown",
+  "do_not_save_samples": "unknown",
+  "do_not_save_grid": "unknown",
+  "eta": "unknown",
+  "denoising_strength": "unknown",
+  "s_min_uncond": "unknown",
+  "s_churn": "unknown",
+  "s_tmax": "unknown",
+  "s_tmin": "unknown",
+  "s_noise": "unknown",
+  "override_settings": "unknown",
+  "override_settings_restore_afterwards": "unknown",
+  "refiner_checkpoint": "unknown",
+  "refiner_switch_at": "unknown",
+  "disable_extra_networks": "unknown",
+  "firstpass_image": "unknown",
+  "comments": "unknown",
+  "enable_hr": "unknown",
+  "firstphase_width": "unknown",
+  "firstphase_height": "unknown",
+  "hr_scale": "unknown",
+  "hr_upscaler": "unknown",
+  "hr_second_pass_steps": "unknown",
+  "hr_resize_x": "unknown",
+  "hr_resize_y": "unknown",
+  "hr_checkpoint_name": "unknown",
+  "hr_additional_modules": "unknown",
+  "hr_sampler_name": "unknown",
+  "hr_scheduler": "unknown",
+  "hr_prompt": "unknown",
+  "hr_negative_prompt": "unknown",
+  "hr_cfg": "unknown",
+  "hr_distilled_cfg": "unknown",
+  "force_task_id": "unknown",
+  "sampler_index": "string",
+  "script_name": "unknown",
+  "script_args": "array",
+  "send_images": "boolean",
+  "save_images": "boolean",
+  "alwayson_scripts": "object",
+  "infotext": "unknown"
+}
+[2026-02-21 16:12:57] AVAILABLE PARAMS DUMP END
+[2026-02-21 16:12:57] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:12:57] cn1_model: model alias 'diffusers_xl_depth_full' -> 'diffusers_xl_depth_full [2f51180b]'
+[2026-02-21 16:12:57] #19 request dump: /content/volume/request_dumps/request_0019.json
+[2026-02-21 16:12:57] #19 attempt 1/2: sending request
+[2026-02-21 16:12:57] #19 FAIL: 500 {"error":"IndexError","detail":"","body":"","message":"list assignment index out of range"}
+[2026-02-21 16:12:57] #19 FAIL payload: /content/volume/request_dumps/request_0019.json
+[2026-02-21 16:12:57] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:12:57] cn1_model: model alias 'diffusers_xl_depth_full' -> 'diffusers_xl_depth_full [2f51180b]'
+[2026-02-21 16:12:57] #20 request dump: /content/volume/request_dumps/request_0020.json
+[2026-02-21 16:12:57] #20 attempt 1/2: sending request
+[2026-02-21 16:12:57] #20 FAIL: 500 {"error":"IndexError","detail":"","body":"","message":"list assignment index out of range"}
+[2026-02-21 16:12:57] #20 FAIL payload: /content/volume/request_dumps/request_0020.json
+[2026-02-21 16:12:58] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:12:58] cn1_model: model alias 'diffusers_xl_depth_full' -> 'diffusers_xl_depth_full [2f51180b]'
+[2026-02-21 16:12:58] #21 request dump: /content/volume/request_dumps/request_0021.json
+[2026-02-21 16:12:58] #21 attempt 1/2: sending request
+[2026-02-21 16:12:58] #21 FAIL: 500 {"error":"IndexError","detail":"","body":"","message":"list assignment index out of range"}
+[2026-02-21 16:12:58] #21 FAIL payload: /content/volume/request_dumps/request_0021.json
+[2026-02-21 16:12:58] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:12:58] cn1_model: model alias 'thibaud_xl_openpose' -> 'thibaud_xl_openpose [c7b9cadd]'
+[2026-02-21 16:12:58] #22 request dump: /content/volume/request_dumps/request_0022.json
+[2026-02-21 16:12:58] #22 attempt 1/2: sending request
+[2026-02-21 16:12:58] #22 FAIL: 500 {"error":"IndexError","detail":"","body":"","message":"list assignment index out of range"}
+[2026-02-21 16:12:58] #22 FAIL payload: /content/volume/request_dumps/request_0022.json
+[2026-02-21 16:12:58] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:12:58] cn1_model: model alias 'thibaud_xl_openpose' -> 'thibaud_xl_openpose [c7b9cadd]'
+[2026-02-21 16:12:58] #23 request dump: /content/volume/request_dumps/request_0023.json
+[2026-02-21 16:12:58] #23 attempt 1/2: sending request
+[2026-02-21 16:14:34] #23 OK images=1 expected=1
+[2026-02-21 16:14:34] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:14:34] cn1_model: model alias 'thibaud_xl_openpose' -> 'thibaud_xl_openpose [c7b9cadd]'
+[2026-02-21 16:14:34] #24 request dump: /content/volume/request_dumps/request_0024.json
+[2026-02-21 16:14:34] #24 attempt 1/2: sending request
+[2026-02-21 16:15:25] #24 OK images=1 expected=1
+[2026-02-21 16:15:25] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:15:25] cn1_model: model alias 'thibaud_xl_openpose' -> 'thibaud_xl_openpose [c7b9cadd]'
+[2026-02-21 16:15:25] #25 request dump: /content/volume/request_dumps/request_0025.json
+[2026-02-21 16:15:25] #25 attempt 1/2: sending request
+[2026-02-21 16:16:13] #25 OK images=1 expected=1
+[2026-02-21 16:16:13] override_settings.sd_model_checkpoint: model alias 'wai_v160' -> 'wai_v160.safetensors'
+[2026-02-21 16:16:13] cn1_model: model alias 'thibaud_xl_openpose' -> 'thibaud_xl_openpose [c7b9cadd]'
+[2026-02-21 16:16:13] #26 request dump: /content/volume/request_dumps/request_0026.json
+[2026-02-21 16:16:13] #26 attempt 1/2: sending request
+[2026-02-21 16:17:02] #26 OK images=1 expected=1
+[2026-02-21 16:17:03] ARCHIVE created: /content/volume/outputs_final_20260221_161702.zip. OUTPUTS_DIR cleaned.
+[2026-02-21 16:17:03] Generation cycle completed. Requests=26 expected_images=26 saved_images=21
