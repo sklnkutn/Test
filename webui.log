@@ -1,0 +1,767 @@
+
+################################################################
+[1m[32mInstall script for stable-diffusion + Web UI
+[1m[34mTested on Debian 11 (Bullseye), Fedora 34+ and openSUSE Leap 15.4 or newer.[0m
+################################################################
+
+################################################################
+Running on [1m[32mroot[0m user
+################################################################
+
+################################################################
+Repo already cloned, using it as install directory
+################################################################
+
+################################################################
+Create and activate python venv
+################################################################
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (22.0.2)
+Collecting pip
+  Downloading pip-26.0.1-py3-none-any.whl (1.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 15.1 MB/s eta 0:00:00
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 22.0.2
+    Uninstalling pip-22.0.2:
+      Successfully uninstalled pip-22.0.2
+Successfully installed pip-26.0.1
+
+################################################################
+Launching launch.py...
+################################################################
+glibc version is 2.35
+Check TCMalloc: libtcmalloc_minimal.so.4
+libtcmalloc_minimal.so.4 is linked with libc.so,execute LD_PRELOAD=/lib/x86_64-linux-gnu/libtcmalloc_minimal.so.4
+Python 3.10.12 (main, Jan 26 2026, 14:55:28) [GCC 11.4.0]
+Version: f2.0.1v1.10.1-previous-669-gdfdcbab6
+Commit hash: dfdcbab685e57677014f05a3309b48cc87383167
+Installing torch and torchvision
+Looking in indexes: https://pypi.org/simple, https://download.pytorch.org/whl/cu121
+Collecting torch==2.3.1
+  Downloading https://download.pytorch.org/whl/cu121/torch-2.3.1%2Bcu121-cp310-cp310-linux_x86_64.whl (781.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 781.0/781.0 MB 13.4 MB/s  0:00:24
+Collecting torchvision==0.18.1
+  Downloading https://download.pytorch.org/whl/cu121/torchvision-0.18.1%2Bcu121-cp310-cp310-linux_x86_64.whl (7.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 125.5 MB/s  0:00:00
+Collecting filelock (from torch==2.3.1)
+  Downloading filelock-3.24.3-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.8.0 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting sympy (from torch==2.3.1)
+  Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx (from torch==2.3.1)
+  Downloading networkx-3.4.2-py3-none-any.whl.metadata (6.3 kB)
+Collecting jinja2 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch==2.3.1)
+  Downloading fsspec-2026.2.0-py3-none-any.whl.metadata (10 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.1.105 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (23.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23.7/23.7 MB 168.3 MB/s  0:00:00
+Collecting nvidia-cuda-runtime-cu12==12.1.105 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (823 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 823.6/823.6 kB 37.3 MB/s  0:00:00
+Collecting nvidia-cuda-cupti-cu12==12.1.105 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (14.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.1/14.1 MB 110.2 MB/s  0:00:00
+Collecting nvidia-cudnn-cu12==8.9.2.26 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cudnn_cu12-8.9.2.26-py3-none-manylinux1_x86_64.whl (731.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 731.7/731.7 MB 16.0 MB/s  0:00:21
+Collecting nvidia-cublas-cu12==12.1.3.1 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl (410.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 410.6/410.6 MB 56.9 MB/s  0:00:05
+Collecting nvidia-cufft-cu12==11.0.2.54 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl (121.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 121.6/121.6 MB 70.0 MB/s  0:00:01
+Collecting nvidia-curand-cu12==10.3.2.106 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl (56.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.5/56.5 MB 78.8 MB/s  0:00:00
+Collecting nvidia-cusolver-cu12==11.4.5.107 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl (124.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 124.2/124.2 MB 61.9 MB/s  0:00:02
+Collecting nvidia-cusparse-cu12==12.1.0.106 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl (196.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.0/196.0 MB 72.8 MB/s  0:00:02
+Collecting nvidia-nccl-cu12==2.20.5 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_nccl_cu12-2.20.5-py3-none-manylinux2014_x86_64.whl (176.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 176.2/176.2 MB 70.0 MB/s  0:00:02
+Collecting nvidia-nvtx-cu12==12.1.105 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (99 kB)
+Collecting triton==2.3.1 (from torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/triton-2.3.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (168.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 168.1/168.1 MB 73.7 MB/s  0:00:02
+Collecting numpy (from torchvision==0.18.1)
+  Downloading numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+Collecting pillow!=8.3.*,>=5.3.0 (from torchvision==0.18.1)
+  Downloading pillow-12.1.1-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+Collecting nvidia-nvjitlink-cu12 (from nvidia-cusolver-cu12==11.4.5.107->torch==2.3.1)
+  Downloading https://download.pytorch.org/whl/nvidia_nvjitlink_cu12-12.9.86-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.3.1)
+  Downloading markupsafe-3.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy->torch==2.3.1)
+  Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Downloading pillow-12.1.1-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 108.3 MB/s  0:00:00
+Downloading https://download.pytorch.org/whl/typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Downloading filelock-3.24.3-py3-none-any.whl (24 kB)
+Downloading fsspec-2026.2.0-py3-none-any.whl (202 kB)
+Downloading https://download.pytorch.org/whl/jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading markupsafe-3.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (20 kB)
+Downloading networkx-3.4.2-py3-none-any.whl (1.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 95.8 MB/s  0:00:00
+Downloading numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.8/16.8 MB 152.5 MB/s  0:00:00
+Downloading https://download.pytorch.org/whl/nvidia_nvjitlink_cu12-12.9.86-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (39.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 39.7/39.7 MB 66.0 MB/s  0:00:00
+Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 138.3 MB/s  0:00:00
+Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 27.0 MB/s  0:00:00
+Installing collected packages: mpmath, typing-extensions, sympy, pillow, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, MarkupSafe, fsspec, filelock, triton, nvidia-cusparse-cu12, nvidia-cudnn-cu12, jinja2, nvidia-cusolver-cu12, torch, torchvision
+
+Successfully installed MarkupSafe-3.0.3 filelock-3.24.3 fsspec-2026.2.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.4.2 numpy-2.2.6 nvidia-cublas-cu12-12.1.3.1 nvidia-cuda-cupti-cu12-12.1.105 nvidia-cuda-nvrtc-cu12-12.1.105 nvidia-cuda-runtime-cu12-12.1.105 nvidia-cudnn-cu12-8.9.2.26 nvidia-cufft-cu12-11.0.2.54 nvidia-curand-cu12-10.3.2.106 nvidia-cusolver-cu12-11.4.5.107 nvidia-cusparse-cu12-12.1.0.106 nvidia-nccl-cu12-2.20.5 nvidia-nvjitlink-cu12-12.9.86 nvidia-nvtx-cu12-12.1.105 pillow-12.1.1 sympy-1.14.0 torch-2.3.1+cu121 torchvision-0.18.1+cu121 triton-2.3.1 typing-extensions-4.15.0
+Installing numpy/skimage compatibility
+Installing clip build deps
+Installing clip
+Installing open_clip
+Installing xformers
+Cloning assets into /content/stable-diffusion-webui-forge/repositories/stable-diffusion-webui-assets...
+Cloning into '/content/stable-diffusion-webui-forge/repositories/stable-diffusion-webui-assets'...
+Cloning huggingface_guess into /content/stable-diffusion-webui-forge/repositories/huggingface_guess...
+Cloning into '/content/stable-diffusion-webui-forge/repositories/huggingface_guess'...
+Cloning BLIP into /content/stable-diffusion-webui-forge/repositories/BLIP...
+Cloning into '/content/stable-diffusion-webui-forge/repositories/BLIP'...
+Installing requirements
+Installing forge_legacy_preprocessor requirement: fvcore
+Installing forge_legacy_preprocessor requirement: mediapipe
+Installing forge_legacy_preprocessor requirement: onnxruntime
+Installing forge_legacy_preprocessor requirement: svglib
+Legacy Preprocessor init warning: Unable to install insightface automatically. Please try run `pip install insightface` manually.
+Installing forge_legacy_preprocessor requirement: handrefinerportable
+Installing forge_legacy_preprocessor requirement: depth_anything
+Installing forge_legacy_preprocessor requirement: depth_anything_v2
+Launching Web UI with arguments: -f --xformers --api --port 17860
+Installing numpy/skimage late compatibility
+Installing pillow late compatibility
+Installing pillow_avif plugin
+Total VRAM 14913 MB, total RAM 12976 MB
+pytorch version: 2.3.1+cu121
+xformers version: 0.0.27
+Set vram state to: NORMAL_VRAM
+Device: cuda:0 Tesla T4 : native
+VAE dtype preferences: [torch.float32] -> torch.float32
+Installing bitsandbytes==0.45.3
+CUDA Using Stream: False
+The cache for model files in Transformers v4.22.0 has been updated. Migrating your old cache. This is a one-time only operation. You can interrupt this and resume the migration later on by calling `transformers.utils.move_cache()`.
+0it [00:00, ?it/s]0it [00:00, ?it/s]
+Using xformers cross attention
+Using xformers attention for VAE
+ControlNet preprocessor location: /content/stable-diffusion-webui-forge/models/ControlNetPreprocessor
+*** Error loading script: soft_inpainting.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 525, in load_scripts
+        script_module = script_loading.load_module(scriptfile.path)
+      File "/content/stable-diffusion-webui-forge/modules/script_loading.py", line 13, in load_module
+        module_spec.loader.exec_module(module)
+      File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+      File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/soft-inpainting/scripts/soft_inpainting.py", line 10, in <module>
+        from joblib import Parallel, delayed, cpu_count
+    ModuleNotFoundError: No module named 'joblib'
+
+---
+2026-02-26 17:18:31,432 - ControlNet - [0;32mINFO[0m - ControlNet UI callback registered.
+Model selected: {'checkpoint_info': {'filename': '/content/stable-diffusion-webui-forge/models/Stable-diffusion/wai_v160.safetensors', 'hash': '4748a7f6'}, 'additional_modules': [], 'unet_storage_dtype': None}
+Using online LoRAs in FP16: False
+Running on local URL:  http://127.0.0.1:17860
+
+To create a public link, set `share=True` in `launch()`.
+Startup time: 387.8s (prepare environment: 342.8s, launcher: 21.6s, import torch: 14.2s, initialize shared: 0.1s, other imports: 0.5s, load scripts: 2.2s, create ui: 2.9s, gradio launch: 1.5s, add APIs: 1.9s).
+Loading Model: {'checkpoint_info': {'filename': '/content/stable-diffusion-webui-forge/models/Stable-diffusion/wai_v160.safetensors', 'hash': '4748a7f6'}, 'additional_modules': [], 'unet_storage_dtype': None}
+[Unload] Trying to free all memory for cuda:0 with 0 models keep loaded ... Done.
+StateDict Keys: {'unet': 1680, 'vae': 248, 'text_encoder': 197, 'text_encoder_2': 518, 'ignore': 0}
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+K-Model Created: {'storage_dtype': torch.float16, 'computation_dtype': torch.float16}
+Calculating sha256 for /content/stable-diffusion-webui-forge/models/Stable-diffusion/wai_v160.safetensors: a5f58eb1c33616c4f06bca55af39876a7b817913cd829caa8acb111b770c85cc
+Model loaded in 53.8s (unload existing model: 0.4s, forge model load: 24.8s, calculate hash: 28.6s).
+WARNING:root:Sampler Scheduler autocorrection: "Euler a" -> "Euler a", "None" -> "Automatic"
+2026-02-26 17:19:32,207 - ControlNet - [0;32mINFO[0m - ControlNet Input Mode: InputMode.SIMPLE
+2026-02-26 17:19:32,222 - ControlNet - [0;32mINFO[0m - Using preprocessor: InsightFace+CLIP-H (IPAdapter)
+2026-02-26 17:19:32,222 - ControlNet - [0;32mINFO[0m - preprocessor resolution = 1024
+
+Downloading: "https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/model.safetensors" to /content/stable-diffusion-webui-forge/models/ControlNetPreprocessor/CLIP-ViT-H-14.safetensors
+CLIP-ViT-H-14.safetensors:   0%|          | 0.00/2.53G [00:00<?, ?B/s]CLIP-ViT-H-14.safetensors:   0%|          | 1.02k/2.53G [00:01<791:27:35, 887B/s]CLIP-ViT-H-14.safetensors:   0%|          | 245k/2.53G [00:01<2:36:32, 269kB/s]  CLIP-ViT-H-14.safetensors:   0%|          | 3.98M/2.53G [00:01<07:54, 5.32MB/s]CLIP-ViT-H-14.safetensors:   0%|          | 12.1M/2.53G [00:01<02:22, 17.7MB/s]CLIP-ViT-H-14.safetensors:   1%|          | 22.2M/2.53G [00:01<01:15, 33.3MB/s]CLIP-ViT-H-14.safetensors:   1%|▏         | 32.1M/2.53G [00:01<00:52, 47.2MB/s]CLIP-ViT-H-14.safetensors:   2%|▏         | 41.7M/2.53G [00:01<00:42, 58.5MB/s]CLIP-ViT-H-14.safetensors:   2%|▏         | 51.2M/2.53G [00:01<00:36, 67.7MB/s]CLIP-ViT-H-14.safetensors:   2%|▏         | 61.2M/2.53G [00:01<00:32, 76.3MB/s]CLIP-ViT-H-14.safetensors:   3%|▎         | 70.3M/2.53G [00:02<00:35, 70.1MB/s]CLIP-ViT-H-14.safetensors:   3%|▎         | 78.4M/2.53G [00:02<00:35, 69.4MB/s]CLIP-ViT-H-14.safetensors:   4%|▎         | 88.5M/2.53G [00:02<00:31, 77.5MB/s]CLIP-ViT-H-14.safetensors:   4%|▍         | 98.5M/2.53G [00:02<00:29, 83.5MB/s]CLIP-ViT-H-14.safetensors:   4%|▍         | 107M/2.53G [00:02<00:33, 72.4MB/s] CLIP-ViT-H-14.safetensors:   5%|▍         | 117M/2.53G [00:02<00:31, 77.6MB/s]CLIP-ViT-H-14.safetensors:   5%|▍         | 126M/2.53G [00:02<00:29, 82.7MB/s]CLIP-ViT-H-14.safetensors:   5%|▌         | 135M/2.53G [00:03<00:40, 58.9MB/s]CLIP-ViT-H-14.safetensors:   6%|▌         | 144M/2.53G [00:03<00:36, 64.8MB/s]CLIP-ViT-H-14.safetensors:   6%|▌         | 152M/2.53G [00:03<00:33, 70.0MB/s]CLIP-ViT-H-14.safetensors:   6%|▋         | 162M/2.53G [00:03<00:30, 76.4MB/s]CLIP-ViT-H-14.safetensors:   7%|▋         | 171M/2.53G [00:03<00:29, 81.3MB/s]CLIP-ViT-H-14.safetensors:   7%|▋         | 180M/2.53G [00:03<00:28, 81.1MB/s]CLIP-ViT-H-14.safetensors:   7%|▋         | 189M/2.53G [00:03<00:27, 84.2MB/s]CLIP-ViT-H-14.safetensors:   8%|▊         | 198M/2.53G [00:03<00:27, 86.0MB/s]CLIP-ViT-H-14.safetensors:   8%|▊         | 207M/2.53G [00:04<00:38, 59.6MB/s]CLIP-ViT-H-14.safetensors:   9%|▊         | 217M/2.53G [00:04<00:34, 67.1MB/s]CLIP-ViT-H-14.safetensors:   9%|▉         | 226M/2.53G [00:04<00:31, 74.0MB/s]CLIP-ViT-H-14.safetensors:   9%|▉         | 236M/2.53G [00:04<00:28, 79.8MB/s]CLIP-ViT-H-14.safetensors:  10%|▉         | 245M/2.53G [00:04<00:27, 84.1MB/s]CLIP-ViT-H-14.safetensors:  10%|█         | 254M/2.53G [00:04<00:26, 84.4MB/s]CLIP-ViT-H-14.safetensors:  10%|█         | 263M/2.53G [00:04<00:30, 74.1MB/s]CLIP-ViT-H-14.safetensors:  11%|█         | 271M/2.53G [00:04<00:33, 67.8MB/s]CLIP-ViT-H-14.safetensors:  11%|█         | 278M/2.53G [00:04<00:33, 66.6MB/s]CLIP-ViT-H-14.safetensors:  11%|█▏        | 287M/2.53G [00:05<00:31, 72.0MB/s]CLIP-ViT-H-14.safetensors:  12%|█▏        | 295M/2.53G [00:05<00:30, 73.7MB/s]CLIP-ViT-H-14.safetensors:  12%|█▏        | 304M/2.53G [00:05<00:28, 78.9MB/s]CLIP-ViT-H-14.safetensors:  12%|█▏        | 313M/2.53G [00:05<00:26, 82.1MB/s]CLIP-ViT-H-14.safetensors:  13%|█▎        | 322M/2.53G [00:05<00:26, 83.5MB/s]CLIP-ViT-H-14.safetensors:  13%|█▎        | 331M/2.53G [00:05<00:25, 84.7MB/s]CLIP-ViT-H-14.safetensors:  13%|█▎        | 339M/2.53G [00:05<00:32, 67.3MB/s]CLIP-ViT-H-14.safetensors:  14%|█▎        | 347M/2.53G [00:05<00:32, 68.0MB/s]CLIP-ViT-H-14.safetensors:  14%|█▍        | 356M/2.53G [00:05<00:28, 75.6MB/s]CLIP-ViT-H-14.safetensors:  15%|█▍        | 367M/2.53G [00:06<00:25, 83.7MB/s]CLIP-ViT-H-14.safetensors:  15%|█▍        | 376M/2.53G [00:06<00:25, 83.4MB/s]CLIP-ViT-H-14.safetensors:  15%|█▌        | 386M/2.53G [00:06<00:24, 88.6MB/s]CLIP-ViT-H-14.safetensors:  16%|█▌        | 396M/2.53G [00:06<00:23, 90.9MB/s]CLIP-ViT-H-14.safetensors:  16%|█▌        | 405M/2.53G [00:06<00:25, 82.5MB/s]CLIP-ViT-H-14.safetensors:  16%|█▋        | 413M/2.53G [00:06<00:28, 75.3MB/s]CLIP-ViT-H-14.safetensors:  17%|█▋        | 421M/2.53G [00:06<00:32, 64.6MB/s]CLIP-ViT-H-14.safetensors:  17%|█▋        | 428M/2.53G [00:06<00:34, 60.6MB/s]CLIP-ViT-H-14.safetensors:  17%|█▋        | 434M/2.53G [00:07<00:34, 61.2MB/s]CLIP-ViT-H-14.safetensors:  17%|█▋        | 441M/2.53G [00:07<00:33, 62.1MB/s]CLIP-ViT-H-14.safetensors:  18%|█▊        | 447M/2.53G [00:07<00:33, 62.3MB/s]CLIP-ViT-H-14.safetensors:  18%|█▊        | 454M/2.53G [00:07<00:33, 62.7MB/s]CLIP-ViT-H-14.safetensors:  18%|█▊        | 460M/2.53G [00:07<00:33, 62.5MB/s]CLIP-ViT-H-14.safetensors:  18%|█▊        | 466M/2.53G [00:07<00:33, 62.4MB/s]CLIP-ViT-H-14.safetensors:  19%|█▊        | 473M/2.53G [00:07<00:32, 62.6MB/s]CLIP-ViT-H-14.safetensors:  19%|█▉        | 479M/2.53G [00:07<00:33, 62.0MB/s]CLIP-ViT-H-14.safetensors:  19%|█▉        | 485M/2.53G [00:07<00:33, 60.5MB/s]CLIP-ViT-H-14.safetensors:  19%|█▉        | 492M/2.53G [00:07<00:32, 61.9MB/s]CLIP-ViT-H-14.safetensors:  20%|█▉        | 498M/2.53G [00:08<00:32, 61.7MB/s]CLIP-ViT-H-14.safetensors:  20%|█▉        | 504M/2.53G [00:08<00:32, 61.5MB/s]CLIP-ViT-H-14.safetensors:  20%|██        | 510M/2.53G [00:08<00:32, 61.8MB/s]CLIP-ViT-H-14.safetensors:  20%|██        | 516M/2.53G [00:08<00:32, 61.9MB/s]CLIP-ViT-H-14.safetensors:  21%|██        | 523M/2.53G [00:08<00:32, 62.0MB/s]CLIP-ViT-H-14.safetensors:  21%|██        | 529M/2.53G [00:08<00:32, 62.0MB/s]CLIP-ViT-H-14.safetensors:  21%|██        | 535M/2.53G [00:08<00:32, 61.9MB/s]CLIP-ViT-H-14.safetensors:  21%|██▏       | 541M/2.53G [00:08<00:33, 59.4MB/s]CLIP-ViT-H-14.safetensors:  22%|██▏       | 547M/2.53G [00:09<01:31, 21.7MB/s]CLIP-ViT-H-14.safetensors:  22%|██▏       | 556M/2.53G [00:09<01:04, 30.7MB/s]CLIP-ViT-H-14.safetensors:  22%|██▏       | 565M/2.53G [00:09<00:49, 39.6MB/s]CLIP-ViT-H-14.safetensors:  23%|██▎       | 572M/2.53G [00:09<00:42, 46.2MB/s]CLIP-ViT-H-14.safetensors:  23%|██▎       | 580M/2.53G [00:09<00:36, 52.9MB/s]CLIP-ViT-H-14.safetensors:  23%|██▎       | 588M/2.53G [00:09<00:33, 58.1MB/s]CLIP-ViT-H-14.safetensors:  24%|██▎       | 596M/2.53G [00:10<00:29, 64.6MB/s]CLIP-ViT-H-14.safetensors:  24%|██▍       | 604M/2.53G [00:10<00:27, 69.0MB/s]CLIP-ViT-H-14.safetensors:  24%|██▍       | 613M/2.53G [00:10<00:26, 72.8MB/s]CLIP-ViT-H-14.safetensors:  25%|██▍       | 621M/2.53G [00:10<00:25, 75.7MB/s]CLIP-ViT-H-14.safetensors:  25%|██▍       | 629M/2.53G [00:10<00:28, 66.4MB/s]CLIP-ViT-H-14.safetensors:  25%|██▌       | 636M/2.53G [00:10<00:30, 62.4MB/s]CLIP-ViT-H-14.safetensors:  26%|██▌       | 645M/2.53G [00:10<00:27, 68.5MB/s]CLIP-ViT-H-14.safetensors:  26%|██▌       | 654M/2.53G [00:10<00:25, 73.3MB/s]CLIP-ViT-H-14.safetensors:  26%|██▌       | 661M/2.53G [00:10<00:25, 74.1MB/s]CLIP-ViT-H-14.safetensors:  27%|██▋       | 671M/2.53G [00:11<00:22, 80.9MB/s]CLIP-ViT-H-14.safetensors:  27%|██▋       | 680M/2.53G [00:11<00:22, 83.2MB/s]CLIP-ViT-H-14.safetensors:  27%|██▋       | 689M/2.53G [00:11<00:21, 85.1MB/s]CLIP-ViT-H-14.safetensors:  28%|██▊       | 698M/2.53G [00:11<00:22, 82.3MB/s]CLIP-ViT-H-14.safetensors:  28%|██▊       | 706M/2.53G [00:11<00:22, 79.9MB/s]CLIP-ViT-H-14.safetensors:  28%|██▊       | 716M/2.53G [00:11<00:21, 85.2MB/s]CLIP-ViT-H-14.safetensors:  29%|██▊       | 725M/2.53G [00:11<00:20, 88.2MB/s]CLIP-ViT-H-14.safetensors:  29%|██▉       | 735M/2.53G [00:11<00:20, 89.5MB/s]CLIP-ViT-H-14.safetensors:  29%|██▉       | 744M/2.53G [00:11<00:19, 90.5MB/s]CLIP-ViT-H-14.safetensors:  30%|██▉       | 753M/2.53G [00:11<00:20, 85.7MB/s]CLIP-ViT-H-14.safetensors:  30%|███       | 762M/2.53G [00:12<00:20, 87.8MB/s]CLIP-ViT-H-14.safetensors:  31%|███       | 772M/2.53G [00:12<00:19, 89.2MB/s]CLIP-ViT-H-14.safetensors:  31%|███       | 782M/2.53G [00:12<00:18, 92.8MB/s]CLIP-ViT-H-14.safetensors:  31%|███▏      | 792M/2.53G [00:12<00:18, 95.2MB/s]CLIP-ViT-H-14.safetensors:  32%|███▏      | 802M/2.53G [00:12<00:17, 98.1MB/s]CLIP-ViT-H-14.safetensors:  32%|███▏      | 813M/2.53G [00:12<00:17, 100MB/s] CLIP-ViT-H-14.safetensors:  33%|███▎      | 823M/2.53G [00:12<00:16, 101MB/s]CLIP-ViT-H-14.safetensors:  33%|███▎      | 834M/2.53G [00:12<00:16, 102MB/s]CLIP-ViT-H-14.safetensors:  33%|███▎      | 844M/2.53G [00:12<00:16, 102MB/s]CLIP-ViT-H-14.safetensors:  34%|███▍      | 854M/2.53G [00:12<00:16, 100MB/s]CLIP-ViT-H-14.safetensors:  34%|███▍      | 864M/2.53G [00:13<00:20, 83.0MB/s]CLIP-ViT-H-14.safetensors:  35%|███▍      | 874M/2.53G [00:13<00:18, 87.9MB/s]CLIP-ViT-H-14.safetensors:  35%|███▍      | 884M/2.53G [00:13<00:18, 90.8MB/s]CLIP-ViT-H-14.safetensors:  35%|███▌      | 894M/2.53G [00:13<00:17, 92.4MB/s]CLIP-ViT-H-14.safetensors:  36%|███▌      | 904M/2.53G [00:13<00:17, 93.9MB/s]CLIP-ViT-H-14.safetensors:  36%|███▌      | 913M/2.53G [00:13<00:17, 94.6MB/s]CLIP-ViT-H-14.safetensors:  37%|███▋      | 923M/2.53G [00:13<00:16, 94.8MB/s]CLIP-ViT-H-14.safetensors:  37%|███▋      | 933M/2.53G [00:13<00:16, 96.2MB/s]CLIP-ViT-H-14.safetensors:  37%|███▋      | 943M/2.53G [00:13<00:16, 97.2MB/s]CLIP-ViT-H-14.safetensors:  38%|███▊      | 953M/2.53G [00:14<00:16, 93.2MB/s]CLIP-ViT-H-14.safetensors:  38%|███▊      | 962M/2.53G [00:14<00:16, 94.5MB/s]CLIP-ViT-H-14.safetensors:  38%|███▊      | 972M/2.53G [00:14<00:16, 95.3MB/s]CLIP-ViT-H-14.safetensors:  39%|███▉      | 982M/2.53G [00:14<00:16, 95.9MB/s]CLIP-ViT-H-14.safetensors:  39%|███▉      | 991M/2.53G [00:14<00:18, 82.0MB/s]CLIP-ViT-H-14.safetensors:  40%|███▉      | 1.00G/2.53G [00:14<00:18, 84.3MB/s]CLIP-ViT-H-14.safetensors:  40%|███▉      | 1.01G/2.53G [00:14<00:17, 85.6MB/s]CLIP-ViT-H-14.safetensors:  40%|████      | 1.02G/2.53G [00:14<00:17, 87.6MB/s]CLIP-ViT-H-14.safetensors:  41%|████      | 1.03G/2.53G [00:14<00:17, 87.3MB/s]CLIP-ViT-H-14.safetensors:  41%|████      | 1.04G/2.53G [00:15<00:17, 87.6MB/s]CLIP-ViT-H-14.safetensors:  41%|████▏     | 1.05G/2.53G [00:15<00:17, 83.9MB/s]CLIP-ViT-H-14.safetensors:  42%|████▏     | 1.05G/2.53G [00:15<00:17, 86.0MB/s]CLIP-ViT-H-14.safetensors:  42%|████▏     | 1.06G/2.53G [00:15<00:16, 87.1MB/s]CLIP-ViT-H-14.safetensors:  42%|████▏     | 1.07G/2.53G [00:15<00:16, 88.8MB/s]CLIP-ViT-H-14.safetensors:  43%|████▎     | 1.08G/2.53G [00:15<00:16, 89.5MB/s]CLIP-ViT-H-14.safetensors:  43%|████▎     | 1.09G/2.53G [00:15<00:15, 91.6MB/s]CLIP-ViT-H-14.safetensors:  44%|████▎     | 1.10G/2.53G [00:15<00:15, 92.0MB/s]CLIP-ViT-H-14.safetensors:  44%|████▍     | 1.11G/2.53G [00:15<00:15, 92.7MB/s]CLIP-ViT-H-14.safetensors:  44%|████▍     | 1.12G/2.53G [00:15<00:14, 94.5MB/s]CLIP-ViT-H-14.safetensors:  45%|████▍     | 1.13G/2.53G [00:16<00:14, 95.0MB/s]CLIP-ViT-H-14.safetensors:  45%|████▌     | 1.14G/2.53G [00:16<00:14, 92.9MB/s]CLIP-ViT-H-14.safetensors:  45%|████▌     | 1.15G/2.53G [00:16<00:14, 96.3MB/s]CLIP-ViT-H-14.safetensors:  46%|████▌     | 1.16G/2.53G [00:16<00:15, 88.4MB/s]CLIP-ViT-H-14.safetensors:  46%|████▋     | 1.17G/2.53G [00:16<00:14, 92.1MB/s]CLIP-ViT-H-14.safetensors:  47%|████▋     | 1.18G/2.53G [00:16<00:14, 94.9MB/s]CLIP-ViT-H-14.safetensors:  47%|████▋     | 1.19G/2.53G [00:16<00:13, 96.2MB/s]CLIP-ViT-H-14.safetensors:  47%|████▋     | 1.20G/2.53G [00:16<00:13, 96.8MB/s]CLIP-ViT-H-14.safetensors:  48%|████▊     | 1.21G/2.53G [00:16<00:13, 97.3MB/s]CLIP-ViT-H-14.safetensors:  48%|████▊     | 1.22G/2.53G [00:16<00:13, 98.7MB/s]CLIP-ViT-H-14.safetensors:  49%|████▊     | 1.23G/2.53G [00:17<00:13, 99.2MB/s]CLIP-ViT-H-14.safetensors:  49%|████▉     | 1.24G/2.53G [00:17<00:13, 95.7MB/s]CLIP-ViT-H-14.safetensors:  49%|████▉     | 1.25G/2.53G [00:17<00:13, 96.9MB/s]CLIP-ViT-H-14.safetensors:  50%|████▉     | 1.26G/2.53G [00:17<00:14, 90.1MB/s]CLIP-ViT-H-14.safetensors:  50%|█████     | 1.27G/2.53G [00:17<00:14, 85.4MB/s]CLIP-ViT-H-14.safetensors:  51%|█████     | 1.28G/2.53G [00:17<00:14, 88.1MB/s]CLIP-ViT-H-14.safetensors:  51%|█████     | 1.29G/2.53G [00:17<00:13, 89.7MB/s]CLIP-ViT-H-14.safetensors:  51%|█████▏    | 1.30G/2.53G [00:17<00:13, 89.8MB/s]CLIP-ViT-H-14.safetensors:  52%|█████▏    | 1.31G/2.53G [00:17<00:13, 91.0MB/s]CLIP-ViT-H-14.safetensors:  52%|█████▏    | 1.31G/2.53G [00:18<00:13, 89.5MB/s]CLIP-ViT-H-14.safetensors:  52%|█████▏    | 1.32G/2.53G [00:18<00:13, 91.0MB/s]CLIP-ViT-H-14.safetensors:  53%|█████▎    | 1.33G/2.53G [00:18<00:13, 87.8MB/s]CLIP-ViT-H-14.safetensors:  53%|█████▎    | 1.34G/2.53G [00:18<00:12, 91.5MB/s]CLIP-ViT-H-14.safetensors:  54%|█████▎    | 1.35G/2.53G [00:18<00:12, 94.6MB/s]CLIP-ViT-H-14.safetensors:  54%|█████▍    | 1.36G/2.53G [00:18<00:12, 95.7MB/s]CLIP-ViT-H-14.safetensors:  54%|█████▍    | 1.37G/2.53G [00:18<00:12, 95.6MB/s]CLIP-ViT-H-14.safetensors:  55%|█████▍    | 1.38G/2.53G [00:18<00:11, 96.8MB/s]CLIP-ViT-H-14.safetensors:  55%|█████▌    | 1.39G/2.53G [00:18<00:11, 97.4MB/s]CLIP-ViT-H-14.safetensors:  55%|█████▌    | 1.40G/2.53G [00:18<00:11, 98.7MB/s]CLIP-ViT-H-14.safetensors:  56%|█████▌    | 1.41G/2.53G [00:19<00:11, 99.4MB/s]CLIP-ViT-H-14.safetensors:  56%|█████▋    | 1.42G/2.53G [00:19<00:12, 90.1MB/s]CLIP-ViT-H-14.safetensors:  57%|█████▋    | 1.43G/2.53G [00:19<00:15, 71.0MB/s]CLIP-ViT-H-14.safetensors:  57%|█████▋    | 1.44G/2.53G [00:19<00:16, 64.5MB/s]CLIP-ViT-H-14.safetensors:  57%|█████▋    | 1.45G/2.53G [00:19<00:17, 63.0MB/s]CLIP-ViT-H-14.safetensors:  58%|█████▊    | 1.45G/2.53G [00:19<00:17, 61.6MB/s]CLIP-ViT-H-14.safetensors:  58%|█████▊    | 1.46G/2.53G [00:19<00:17, 61.1MB/s]CLIP-ViT-H-14.safetensors:  58%|█████▊    | 1.47G/2.53G [00:19<00:17, 61.7MB/s]CLIP-ViT-H-14.safetensors:  58%|█████▊    | 1.47G/2.53G [00:20<00:16, 62.4MB/s]CLIP-ViT-H-14.safetensors:  59%|█████▊    | 1.48G/2.53G [00:20<00:16, 62.2MB/s]CLIP-ViT-H-14.safetensors:  59%|█████▉    | 1.49G/2.53G [00:20<00:16, 62.4MB/s]CLIP-ViT-H-14.safetensors:  59%|█████▉    | 1.49G/2.53G [00:20<00:17, 60.6MB/s]CLIP-ViT-H-14.safetensors:  59%|█████▉    | 1.50G/2.53G [00:20<00:16, 61.5MB/s]CLIP-ViT-H-14.safetensors:  60%|█████▉    | 1.50G/2.53G [00:20<00:16, 61.9MB/s]CLIP-ViT-H-14.safetensors:  60%|█████▉    | 1.51G/2.53G [00:20<00:16, 62.5MB/s]CLIP-ViT-H-14.safetensors:  60%|██████    | 1.52G/2.53G [00:20<00:16, 61.9MB/s]CLIP-ViT-H-14.safetensors:  60%|██████    | 1.52G/2.53G [00:20<00:16, 62.7MB/s]CLIP-ViT-H-14.safetensors:  61%|██████    | 1.53G/2.53G [00:21<00:15, 63.4MB/s]CLIP-ViT-H-14.safetensors:  61%|██████    | 1.54G/2.53G [00:21<00:17, 55.7MB/s]CLIP-ViT-H-14.safetensors:  61%|██████    | 1.54G/2.53G [00:21<00:19, 50.9MB/s]CLIP-ViT-H-14.safetensors:  61%|██████    | 1.55G/2.53G [00:21<00:18, 51.6MB/s]CLIP-ViT-H-14.safetensors:  61%|██████▏   | 1.55G/2.53G [00:21<00:18, 51.9MB/s]CLIP-ViT-H-14.safetensors:  62%|██████▏   | 1.56G/2.53G [00:21<00:18, 53.8MB/s]CLIP-ViT-H-14.safetensors:  62%|██████▏   | 1.56G/2.53G [00:21<00:17, 55.0MB/s]CLIP-ViT-H-14.safetensors:  62%|██████▏   | 1.57G/2.53G [00:21<00:16, 56.5MB/s]CLIP-ViT-H-14.safetensors:  62%|██████▏   | 1.58G/2.53G [00:21<00:17, 55.1MB/s]CLIP-ViT-H-14.safetensors:  63%|██████▎   | 1.58G/2.53G [00:22<00:17, 55.6MB/s]CLIP-ViT-H-14.safetensors:  63%|██████▎   | 1.59G/2.53G [00:22<00:17, 53.6MB/s]CLIP-ViT-H-14.safetensors:  63%|██████▎   | 1.60G/2.53G [00:22<00:14, 64.3MB/s]CLIP-ViT-H-14.safetensors:  64%|██████▎   | 1.61G/2.53G [00:22<00:12, 72.9MB/s]CLIP-ViT-H-14.safetensors:  64%|██████▍   | 1.62G/2.53G [00:22<00:11, 79.9MB/s]CLIP-ViT-H-14.safetensors:  64%|██████▍   | 1.62G/2.53G [00:22<00:11, 81.1MB/s]CLIP-ViT-H-14.safetensors:  65%|██████▍   | 1.63G/2.53G [00:22<00:10, 87.1MB/s]CLIP-ViT-H-14.safetensors:  65%|██████▌   | 1.64G/2.53G [00:22<00:09, 90.3MB/s]CLIP-ViT-H-14.safetensors:  65%|██████▌   | 1.65G/2.53G [00:22<00:10, 84.0MB/s]CLIP-ViT-H-14.safetensors:  66%|██████▌   | 1.66G/2.53G [00:22<00:09, 86.9MB/s]CLIP-ViT-H-14.safetensors:  66%|██████▌   | 1.67G/2.53G [00:23<00:09, 89.2MB/s]CLIP-ViT-H-14.safetensors:  67%|██████▋   | 1.68G/2.53G [00:23<00:09, 90.9MB/s]CLIP-ViT-H-14.safetensors:  67%|██████▋   | 1.69G/2.53G [00:23<00:09, 91.9MB/s]CLIP-ViT-H-14.safetensors:  67%|██████▋   | 1.70G/2.53G [00:23<00:09, 91.6MB/s]CLIP-ViT-H-14.safetensors:  68%|██████▊   | 1.71G/2.53G [00:23<00:08, 91.6MB/s]CLIP-ViT-H-14.safetensors:  68%|██████▊   | 1.72G/2.53G [00:23<00:09, 87.9MB/s]CLIP-ViT-H-14.safetensors:  68%|██████▊   | 1.73G/2.53G [00:23<00:09, 88.5MB/s]CLIP-ViT-H-14.safetensors:  69%|██████▊   | 1.74G/2.53G [00:23<00:08, 88.4MB/s]CLIP-ViT-H-14.safetensors:  69%|██████▉   | 1.75G/2.53G [00:23<00:09, 85.5MB/s]CLIP-ViT-H-14.safetensors:  69%|██████▉   | 1.75G/2.53G [00:23<00:09, 84.9MB/s]CLIP-ViT-H-14.safetensors:  70%|██████▉   | 1.76G/2.53G [00:24<00:09, 84.1MB/s]CLIP-ViT-H-14.safetensors:  70%|███████   | 1.77G/2.53G [00:25<00:49, 15.3MB/s]CLIP-ViT-H-14.safetensors:  70%|███████   | 1.78G/2.53G [00:26<00:55, 13.5MB/s]CLIP-ViT-H-14.safetensors:  71%|███████   | 1.78G/2.53G [00:26<00:42, 17.6MB/s]CLIP-ViT-H-14.safetensors:  71%|███████   | 1.79G/2.53G [00:26<00:30, 24.2MB/s]CLIP-ViT-H-14.safetensors:  71%|███████   | 1.80G/2.53G [00:26<00:25, 29.0MB/s]CLIP-ViT-H-14.safetensors:  72%|███████▏  | 1.81G/2.53G [00:26<00:18, 38.2MB/s]CLIP-ViT-H-14.safetensors:  72%|███████▏  | 1.82G/2.53G [00:26<00:14, 47.7MB/s]CLIP-ViT-H-14.safetensors:  72%|███████▏  | 1.83G/2.53G [00:26<00:12, 56.6MB/s]CLIP-ViT-H-14.safetensors:  73%|███████▎  | 1.84G/2.53G [00:27<00:10, 64.7MB/s]CLIP-ViT-H-14.safetensors:  73%|███████▎  | 1.85G/2.53G [00:27<00:09, 72.6MB/s]CLIP-ViT-H-14.safetensors:  73%|███████▎  | 1.86G/2.53G [00:27<00:08, 79.3MB/s]CLIP-ViT-H-14.safetensors:  74%|███████▍  | 1.87G/2.53G [00:27<00:07, 84.1MB/s]CLIP-ViT-H-14.safetensors:  74%|███████▍  | 1.88G/2.53G [00:27<00:08, 77.0MB/s]CLIP-ViT-H-14.safetensors:  75%|███████▍  | 1.89G/2.53G [00:27<00:08, 79.7MB/s]CLIP-ViT-H-14.safetensors:  75%|███████▍  | 1.89G/2.53G [00:27<00:08, 78.6MB/s]CLIP-ViT-H-14.safetensors:  75%|███████▌  | 1.90G/2.53G [00:27<00:07, 83.0MB/s]CLIP-ViT-H-14.safetensors:  76%|███████▌  | 1.91G/2.53G [00:27<00:07, 83.9MB/s]CLIP-ViT-H-14.safetensors:  76%|███████▌  | 1.92G/2.53G [00:28<00:07, 86.4MB/s]CLIP-ViT-H-14.safetensors:  76%|███████▋  | 1.93G/2.53G [00:28<00:06, 87.2MB/s]CLIP-ViT-H-14.safetensors:  77%|███████▋  | 1.94G/2.53G [00:28<00:06, 88.4MB/s]CLIP-ViT-H-14.safetensors:  77%|███████▋  | 1.95G/2.53G [00:28<00:06, 90.2MB/s]CLIP-ViT-H-14.safetensors:  77%|███████▋  | 1.96G/2.53G [00:28<00:06, 91.6MB/s]CLIP-ViT-H-14.safetensors:  78%|███████▊  | 1.97G/2.53G [00:28<00:05, 93.4MB/s]CLIP-ViT-H-14.safetensors:  78%|███████▊  | 1.98G/2.53G [00:28<00:05, 93.6MB/s]CLIP-ViT-H-14.safetensors:  79%|███████▊  | 1.99G/2.53G [00:28<00:06, 90.0MB/s]CLIP-ViT-H-14.safetensors:  79%|███████▉  | 2.00G/2.53G [00:28<00:06, 81.8MB/s]CLIP-ViT-H-14.safetensors:  79%|███████▉  | 2.01G/2.53G [00:28<00:06, 86.9MB/s]CLIP-ViT-H-14.safetensors:  80%|███████▉  | 2.02G/2.53G [00:29<00:05, 88.0MB/s]CLIP-ViT-H-14.safetensors:  80%|████████  | 2.03G/2.53G [00:29<00:05, 90.5MB/s]CLIP-ViT-H-14.safetensors:  80%|████████  | 2.03G/2.53G [00:29<00:05, 90.9MB/s]CLIP-ViT-H-14.safetensors:  81%|████████  | 2.04G/2.53G [00:29<00:05, 93.0MB/s]CLIP-ViT-H-14.safetensors:  81%|████████  | 2.05G/2.53G [00:29<00:05, 90.9MB/s]CLIP-ViT-H-14.safetensors:  82%|████████▏ | 2.06G/2.53G [00:29<00:05, 91.0MB/s]CLIP-ViT-H-14.safetensors:  82%|████████▏ | 2.07G/2.53G [00:29<00:04, 92.1MB/s]CLIP-ViT-H-14.safetensors:  82%|████████▏ | 2.08G/2.53G [00:29<00:05, 89.2MB/s]CLIP-ViT-H-14.safetensors:  83%|████████▎ | 2.09G/2.53G [00:29<00:04, 89.3MB/s]CLIP-ViT-H-14.safetensors:  83%|████████▎ | 2.10G/2.53G [00:29<00:04, 91.3MB/s]CLIP-ViT-H-14.safetensors:  83%|████████▎ | 2.11G/2.53G [00:30<00:04, 92.6MB/s]CLIP-ViT-H-14.safetensors:  84%|████████▍ | 2.12G/2.53G [00:30<00:04, 96.3MB/s]CLIP-ViT-H-14.safetensors:  84%|████████▍ | 2.13G/2.53G [00:30<00:04, 97.1MB/s]CLIP-ViT-H-14.safetensors:  85%|████████▍ | 2.14G/2.53G [00:30<00:03, 98.8MB/s]CLIP-ViT-H-14.safetensors:  85%|████████▌ | 2.15G/2.53G [00:30<00:03, 96.8MB/s]CLIP-ViT-H-14.safetensors:  85%|████████▌ | 2.16G/2.53G [00:30<00:04, 90.3MB/s]CLIP-ViT-H-14.safetensors:  86%|████████▌ | 2.17G/2.53G [00:30<00:04, 85.4MB/s]CLIP-ViT-H-14.safetensors:  86%|████████▌ | 2.18G/2.53G [00:30<00:04, 83.9MB/s]CLIP-ViT-H-14.safetensors:  87%|████████▋ | 2.19G/2.53G [00:30<00:03, 86.7MB/s]CLIP-ViT-H-14.safetensors:  87%|████████▋ | 2.20G/2.53G [00:31<00:03, 86.3MB/s]CLIP-ViT-H-14.safetensors:  87%|████████▋ | 2.21G/2.53G [00:31<00:03, 89.4MB/s]CLIP-ViT-H-14.safetensors:  88%|████████▊ | 2.21G/2.53G [00:31<00:03, 88.7MB/s]CLIP-ViT-H-14.safetensors:  88%|████████▊ | 2.22G/2.53G [00:31<00:03, 90.8MB/s]CLIP-ViT-H-14.safetensors:  88%|████████▊ | 2.23G/2.53G [00:31<00:03, 92.3MB/s]CLIP-ViT-H-14.safetensors:  89%|████████▊ | 2.24G/2.53G [00:31<00:03, 94.2MB/s]CLIP-ViT-H-14.safetensors:  89%|████████▉ | 2.25G/2.53G [00:31<00:02, 94.2MB/s]CLIP-ViT-H-14.safetensors:  90%|████████▉ | 2.26G/2.53G [00:31<00:02, 95.6MB/s]CLIP-ViT-H-14.safetensors:  90%|████████▉ | 2.27G/2.53G [00:31<00:02, 91.3MB/s]CLIP-ViT-H-14.safetensors:  90%|█████████ | 2.28G/2.53G [00:31<00:02, 94.0MB/s]CLIP-ViT-H-14.safetensors:  91%|█████████ | 2.29G/2.53G [00:32<00:02, 95.8MB/s]CLIP-ViT-H-14.safetensors:  91%|█████████ | 2.30G/2.53G [00:32<00:02, 89.3MB/s]CLIP-ViT-H-14.safetensors:  91%|█████████▏| 2.31G/2.53G [00:32<00:02, 78.6MB/s]CLIP-ViT-H-14.safetensors:  92%|█████████▏| 2.32G/2.53G [00:32<00:02, 72.9MB/s]CLIP-ViT-H-14.safetensors:  92%|█████████▏| 2.33G/2.53G [00:32<00:03, 62.5MB/s]CLIP-ViT-H-14.safetensors:  92%|█████████▏| 2.33G/2.53G [00:32<00:03, 61.4MB/s]CLIP-ViT-H-14.safetensors:  93%|█████████▎| 2.34G/2.53G [00:32<00:03, 58.8MB/s]CLIP-ViT-H-14.safetensors:  93%|█████████▎| 2.35G/2.53G [00:32<00:03, 58.6MB/s]CLIP-ViT-H-14.safetensors:  93%|█████████▎| 2.35G/2.53G [00:33<00:02, 59.4MB/s]CLIP-ViT-H-14.safetensors:  93%|█████████▎| 2.36G/2.53G [00:33<00:02, 59.7MB/s]CLIP-ViT-H-14.safetensors:  94%|█████████▎| 2.36G/2.53G [00:33<00:02, 58.6MB/s]CLIP-ViT-H-14.safetensors:  94%|█████████▎| 2.37G/2.53G [00:33<00:02, 58.4MB/s]CLIP-ViT-H-14.safetensors:  94%|█████████▍| 2.38G/2.53G [00:33<00:02, 60.3MB/s]CLIP-ViT-H-14.safetensors:  94%|█████████▍| 2.38G/2.53G [00:33<00:02, 61.0MB/s]CLIP-ViT-H-14.safetensors:  94%|█████████▍| 2.39G/2.53G [00:33<00:02, 61.3MB/s]CLIP-ViT-H-14.safetensors:  95%|█████████▍| 2.40G/2.53G [00:33<00:02, 58.5MB/s]CLIP-ViT-H-14.safetensors:  95%|█████████▍| 2.40G/2.53G [00:33<00:02, 59.3MB/s]CLIP-ViT-H-14.safetensors:  95%|█████████▌| 2.41G/2.53G [00:34<00:02, 58.5MB/s]CLIP-ViT-H-14.safetensors:  95%|█████████▌| 2.41G/2.53G [00:34<00:01, 57.8MB/s]CLIP-ViT-H-14.safetensors:  96%|█████████▌| 2.42G/2.53G [00:34<00:01, 60.0MB/s]CLIP-ViT-H-14.safetensors:  96%|█████████▌| 2.43G/2.53G [00:34<00:01, 60.5MB/s]CLIP-ViT-H-14.safetensors:  96%|█████████▌| 2.43G/2.53G [00:34<00:01, 57.6MB/s]CLIP-ViT-H-14.safetensors:  96%|█████████▋| 2.44G/2.53G [00:34<00:01, 59.6MB/s]CLIP-ViT-H-14.safetensors:  97%|█████████▋| 2.44G/2.53G [00:34<00:01, 60.4MB/s]CLIP-ViT-H-14.safetensors:  97%|█████████▋| 2.45G/2.53G [00:34<00:01, 60.3MB/s]CLIP-ViT-H-14.safetensors:  97%|█████████▋| 2.46G/2.53G [00:34<00:01, 59.4MB/s]CLIP-ViT-H-14.safetensors:  97%|█████████▋| 2.46G/2.53G [00:34<00:01, 56.4MB/s]CLIP-ViT-H-14.safetensors:  98%|█████████▊| 2.47G/2.53G [00:35<00:01, 51.5MB/s]CLIP-ViT-H-14.safetensors:  98%|█████████▊| 2.47G/2.53G [00:35<00:01, 52.9MB/s]CLIP-ViT-H-14.safetensors:  98%|█████████▊| 2.48G/2.53G [00:35<00:00, 63.3MB/s]CLIP-ViT-H-14.safetensors:  99%|█████████▊| 2.49G/2.53G [00:35<00:00, 72.2MB/s]CLIP-ViT-H-14.safetensors:  99%|█████████▉| 2.50G/2.53G [00:35<00:00, 79.3MB/s]CLIP-ViT-H-14.safetensors:  99%|█████████▉| 2.51G/2.53G [00:35<00:00, 83.4MB/s]CLIP-ViT-H-14.safetensors: 100%|█████████▉| 2.52G/2.53G [00:35<00:00, 85.8MB/s]CLIP-ViT-H-14.safetensors: 100%|██████████| 2.53G/2.53G [00:35<00:00, 70.7MB/s]
+*** Error running process: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 566, in load_insight_face
+        from insightface.app import FaceAnalysis
+    ModuleNotFoundError: No module named 'insightface'
+
+    During handling of the above exception, another exception occurred:
+
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 844, in process
+        script.process(p, *script_args)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 554, in process
+        self.process_unit_after_click_generate(p, unit, params, *args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 328, in process_unit_after_click_generate
+        preprocessor_output = preprocessor(
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 46, in __call__
+        insightface=self.load_insightface(),
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 40, in load_insightface
+        self.cached_insightface = opInsightFaceLoader()[0]
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 568, in load_insight_face
+        raise Exception(e)
+    Exception: No module named 'insightface'
+
+---
+[Unload] Trying to free 7482.85 MB for cuda:0 with 0 models keep loaded ... Done.
+[Memory Management] Target: IntegratedAutoencoderKL, Free GPU: 9736.52 MB, Model Require: 319.11 MB, Previously Loaded: 0.00 MB, Inference Require: 1024.00 MB, Remaining: 8393.40 MB, All loaded to GPU.
+Moving model(s) has taken 0.11 seconds
+Downloading VAEApprox model to: /content/stable-diffusion-webui-forge/models/VAE-approx/vaeapprox-sdxl.pt
+  0%|          | 0.00/209k [00:00<?, ?B/s]100%|██████████| 209k/209k [00:00<00:00, 12.8MB/s]
+[Unload] Trying to free 3051.58 MB for cuda:0 with 0 models keep loaded ... Current free memory is 9440.04 MB ... Done.
+[Memory Management] Target: JointTextEncoder, Free GPU: 9440.04 MB, Model Require: 1559.68 MB, Previously Loaded: 0.00 MB, Inference Require: 1024.00 MB, Remaining: 6856.37 MB, All loaded to GPU.
+Moving model(s) has taken 5.78 seconds
+[Unload] Trying to free 1024.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 7658.89 MB ... Done.
+*** Error running process_before_every_sampling: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 892, in process_before_every_sampling
+        script.process_before_every_sampling(p, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 561, in process_before_every_sampling
+        self.process_unit_before_every_sampling(p, unit, self.current_params[i], *args, **kwargs)
+    KeyError: 0
+
+---
+[Unload] Trying to free 2902.26 MB for cuda:0 with 0 models keep loaded ... Current free memory is 7658.03 MB ... Done.
+[Memory Management] Target: KModel, Free GPU: 7658.03 MB, Model Require: 0.00 MB, Previously Loaded: 4897.05 MB, Inference Require: 1024.00 MB, Remaining: 6634.03 MB, All loaded to GPU.
+Moving model(s) has taken 0.04 seconds
+  0%|          | 0/16 [00:00<?, ?it/s]
+Total progress:   0%|          | 0/16 [00:00<?, ?it/s][A  6%|▋         | 1/16 [00:01<00:18,  1.21s/it]
+Total progress:  12%|█▎        | 2/16 [00:00<00:05,  2.53it/s][A 12%|█▎        | 2/16 [00:02<00:13,  1.04it/s]
+Total progress:  19%|█▉        | 3/16 [00:01<00:07,  1.78it/s][A 19%|█▉        | 3/16 [00:02<00:11,  1.13it/s]
+Total progress:  25%|██▌       | 4/16 [00:02<00:07,  1.55it/s][A 25%|██▌       | 4/16 [00:03<00:10,  1.18it/s]
+Total progress:  31%|███▏      | 5/16 [00:03<00:07,  1.43it/s][A 31%|███▏      | 5/16 [00:04<00:09,  1.20it/s]
+Total progress:  38%|███▊      | 6/16 [00:03<00:07,  1.36it/s][A 38%|███▊      | 6/16 [00:05<00:08,  1.21it/s]
+Total progress:  44%|████▍     | 7/16 [00:04<00:06,  1.32it/s][A 44%|████▍     | 7/16 [00:06<00:07,  1.22it/s]
+Total progress:  50%|█████     | 8/16 [00:05<00:06,  1.29it/s][A 50%|█████     | 8/16 [00:06<00:06,  1.23it/s]
+Total progress:  56%|█████▋    | 9/16 [00:06<00:05,  1.27it/s][A 56%|█████▋    | 9/16 [00:07<00:05,  1.23it/s]
+Total progress:  62%|██████▎   | 10/16 [00:07<00:04,  1.26it/s][A 62%|██████▎   | 10/16 [00:08<00:04,  1.23it/s]
+Total progress:  69%|██████▉   | 11/16 [00:08<00:04,  1.25it/s][A 69%|██████▉   | 11/16 [00:09<00:04,  1.23it/s]
+Total progress:  75%|███████▌  | 12/16 [00:08<00:03,  1.24it/s][A 75%|███████▌  | 12/16 [00:10<00:03,  1.23it/s]
+Total progress:  81%|████████▏ | 13/16 [00:09<00:02,  1.23it/s][A 81%|████████▏ | 13/16 [00:10<00:02,  1.22it/s]
+Total progress:  88%|████████▊ | 14/16 [00:10<00:01,  1.22it/s][A 88%|████████▊ | 14/16 [00:11<00:01,  1.22it/s]
+Total progress:  94%|█████████▍| 15/16 [00:11<00:00,  1.22it/s][A 94%|█████████▍| 15/16 [00:12<00:00,  1.21it/s]
+Total progress: 100%|██████████| 16/16 [00:12<00:00,  1.21it/s][A100%|██████████| 16/16 [00:13<00:00,  1.21it/s]100%|██████████| 16/16 [00:13<00:00,  1.20it/s]
+[Unload] Trying to free 8712.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 7653.52 MB ... Unload model JointTextEncoder Current free memory is 9417.33 MB ... Done.
+Memory cleanup has taken 1.38 seconds
+*** Error running postprocess_batch_list: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 916, in postprocess_batch_list
+        script.postprocess_batch_list(p, pp, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 567, in postprocess_batch_list
+        self.process_unit_after_every_sampling(p, unit, self.current_params[i], pp, *args, **kwargs)
+    KeyError: 0
+
+---
+
+Total progress: 100%|██████████| 16/16 [00:16<00:00,  1.21it/s][ATotal progress: 100%|██████████| 16/16 [00:16<00:00,  1.04s/it]
+WARNING:root:Sampler Scheduler autocorrection: "Euler a" -> "Euler a", "None" -> "Automatic"
+2026-02-26 17:20:44,948 - ControlNet - [0;32mINFO[0m - ControlNet Input Mode: InputMode.SIMPLE
+2026-02-26 17:20:44,948 - ControlNet - [0;32mINFO[0m - Using preprocessor: InsightFace+CLIP-H (IPAdapter)
+2026-02-26 17:20:44,949 - ControlNet - [0;32mINFO[0m - preprocessor resolution = 1024
+*** Error running process: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 566, in load_insight_face
+        from insightface.app import FaceAnalysis
+    ModuleNotFoundError: No module named 'insightface'
+
+    During handling of the above exception, another exception occurred:
+
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 844, in process
+        script.process(p, *script_args)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 554, in process
+        self.process_unit_after_click_generate(p, unit, params, *args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 328, in process_unit_after_click_generate
+        preprocessor_output = preprocessor(
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 46, in __call__
+        insightface=self.load_insightface(),
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 40, in load_insightface
+        self.cached_insightface = opInsightFaceLoader()[0]
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 568, in load_insight_face
+        raise Exception(e)
+    Exception: No module named 'insightface'
+
+---
+[Unload] Trying to free 7068.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9381.58 MB ... Done.
+[Unload] Trying to free 3302.87 MB for cuda:0 with 0 models keep loaded ... Current free memory is 9417.33 MB ... Done.
+[Memory Management] Target: JointTextEncoder, Free GPU: 9417.33 MB, Model Require: 1752.98 MB, Previously Loaded: 0.00 MB, Inference Require: 1024.00 MB, Remaining: 6640.35 MB, All loaded to GPU.
+Moving model(s) has taken 0.51 seconds
+[Unload] Trying to free 1024.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 7653.15 MB ... Done.
+*** Error running process_before_every_sampling: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 892, in process_before_every_sampling
+        script.process_before_every_sampling(p, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 561, in process_before_every_sampling
+        self.process_unit_before_every_sampling(p, unit, self.current_params[i], *args, **kwargs)
+    KeyError: 0
+
+---
+[Unload] Trying to free 1310.72 MB for cuda:0 with 1 models keep loaded ... Current free memory is 7652.29 MB ... Done.
+  0%|          | 0/17 [00:00<?, ?it/s]
+Total progress:   0%|          | 0/17 [00:00<?, ?it/s][A  6%|▌         | 1/17 [00:00<00:12,  1.24it/s]
+Total progress:  12%|█▏        | 2/17 [00:00<00:06,  2.42it/s][A 12%|█▏        | 2/17 [00:01<00:12,  1.22it/s]
+Total progress:  18%|█▊        | 3/17 [00:01<00:08,  1.71it/s][A 18%|█▊        | 3/17 [00:02<00:11,  1.21it/s]
+Total progress:  24%|██▎       | 4/17 [00:02<00:08,  1.48it/s][A 24%|██▎       | 4/17 [00:03<00:10,  1.21it/s]
+Total progress:  29%|██▉       | 5/17 [00:03<00:08,  1.36it/s][A 29%|██▉       | 5/17 [00:04<00:09,  1.20it/s]
+Total progress:  35%|███▌      | 6/17 [00:04<00:08,  1.30it/s][A 35%|███▌      | 6/17 [00:04<00:09,  1.20it/s]
+Total progress:  41%|████      | 7/17 [00:05<00:07,  1.26it/s][A 41%|████      | 7/17 [00:05<00:08,  1.19it/s]
+Total progress:  47%|████▋     | 8/17 [00:05<00:07,  1.23it/s][A 47%|████▋     | 8/17 [00:06<00:07,  1.19it/s]
+Total progress:  53%|█████▎    | 9/17 [00:06<00:06,  1.22it/s][A 53%|█████▎    | 9/17 [00:07<00:06,  1.19it/s]
+Total progress:  59%|█████▉    | 10/17 [00:07<00:05,  1.20it/s][A 59%|█████▉    | 10/17 [00:08<00:05,  1.18it/s]
+Total progress:  65%|██████▍   | 11/17 [00:08<00:05,  1.19it/s][A 65%|██████▍   | 11/17 [00:09<00:05,  1.18it/s]
+Total progress:  71%|███████   | 12/17 [00:09<00:04,  1.18it/s][A 71%|███████   | 12/17 [00:10<00:04,  1.17it/s]
+Total progress:  76%|███████▋  | 13/17 [00:10<00:03,  1.18it/s][A 76%|███████▋  | 13/17 [00:10<00:03,  1.17it/s]
+Total progress:  82%|████████▏ | 14/17 [00:10<00:02,  1.17it/s][A 82%|████████▏ | 14/17 [00:11<00:02,  1.17it/s]
+Total progress:  88%|████████▊ | 15/17 [00:11<00:01,  1.17it/s][A 88%|████████▊ | 15/17 [00:12<00:01,  1.16it/s]
+Total progress:  94%|█████████▍| 16/17 [00:12<00:00,  1.16it/s][A 94%|█████████▍| 16/17 [00:13<00:00,  1.16it/s]
+Total progress: 100%|██████████| 17/17 [00:13<00:00,  1.16it/s][A100%|██████████| 17/17 [00:14<00:00,  1.16it/s]100%|██████████| 17/17 [00:14<00:00,  1.18it/s]
+[Unload] Trying to free 8712.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 7653.77 MB ... Unload model JointTextEncoder Current free memory is 9417.33 MB ... Done.
+Memory cleanup has taken 0.49 seconds
+*** Error running postprocess_batch_list: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 916, in postprocess_batch_list
+        script.postprocess_batch_list(p, pp, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 567, in postprocess_batch_list
+        self.process_unit_after_every_sampling(p, unit, self.current_params[i], pp, *args, **kwargs)
+    KeyError: 0
+
+---
+
+Total progress: 100%|██████████| 17/17 [00:17<00:00,  1.16it/s][ATotal progress: 100%|██████████| 17/17 [00:17<00:00,  1.01s/it]
+WARNING:root:Sampler Scheduler autocorrection: "Euler a" -> "Euler a", "None" -> "Automatic"
+2026-02-26 17:21:05,218 - ControlNet - [0;32mINFO[0m - ControlNet Input Mode: InputMode.SIMPLE
+2026-02-26 17:21:05,218 - ControlNet - [0;32mINFO[0m - Using preprocessor: InsightFace+CLIP-H (IPAdapter)
+2026-02-26 17:21:05,219 - ControlNet - [0;32mINFO[0m - preprocessor resolution = 1024
+*** Error running process: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 566, in load_insight_face
+        from insightface.app import FaceAnalysis
+    ModuleNotFoundError: No module named 'insightface'
+
+    During handling of the above exception, another exception occurred:
+
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 844, in process
+        script.process(p, *script_args)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 554, in process
+        self.process_unit_after_click_generate(p, unit, params, *args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 328, in process_unit_after_click_generate
+        preprocessor_output = preprocessor(
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 46, in __call__
+        insightface=self.load_insightface(),
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 40, in load_insightface
+        self.cached_insightface = opInsightFaceLoader()[0]
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 568, in load_insight_face
+        raise Exception(e)
+    Exception: No module named 'insightface'
+
+---
+[Unload] Trying to free 7068.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9381.58 MB ... Done.
+*** Error running process_before_every_sampling: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 892, in process_before_every_sampling
+        script.process_before_every_sampling(p, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 561, in process_before_every_sampling
+        self.process_unit_before_every_sampling(p, unit, self.current_params[i], *args, **kwargs)
+    KeyError: 0
+
+---
+[Unload] Trying to free 1310.72 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9417.08 MB ... Done.
+  0%|          | 0/19 [00:00<?, ?it/s]
+Total progress:   0%|          | 0/19 [00:00<?, ?it/s][A  5%|▌         | 1/19 [00:00<00:15,  1.14it/s]
+Total progress:  11%|█         | 2/19 [00:00<00:07,  2.23it/s][A 11%|█         | 2/19 [00:01<00:15,  1.12it/s]
+Total progress:  16%|█▌        | 3/19 [00:01<00:10,  1.58it/s][A 16%|█▌        | 3/19 [00:02<00:14,  1.12it/s]
+Total progress:  21%|██        | 4/19 [00:02<00:11,  1.36it/s][A 21%|██        | 4/19 [00:03<00:13,  1.12it/s]
+Total progress:  26%|██▋       | 5/19 [00:03<00:11,  1.26it/s][A 26%|██▋       | 5/19 [00:04<00:12,  1.11it/s]
+Total progress:  32%|███▏      | 6/19 [00:04<00:10,  1.20it/s][A 32%|███▏      | 6/19 [00:05<00:11,  1.11it/s]
+Total progress:  37%|███▋      | 7/19 [00:05<00:10,  1.16it/s][A 37%|███▋      | 7/19 [00:06<00:10,  1.10it/s]
+Total progress:  42%|████▏     | 8/19 [00:06<00:09,  1.14it/s][A 42%|████▏     | 8/19 [00:07<00:10,  1.10it/s]
+Total progress:  47%|████▋     | 9/19 [00:07<00:08,  1.12it/s][A 47%|████▋     | 9/19 [00:08<00:09,  1.09it/s]
+Total progress:  53%|█████▎    | 10/19 [00:08<00:08,  1.11it/s][A 53%|█████▎    | 10/19 [00:09<00:08,  1.09it/s]
+Total progress:  58%|█████▊    | 11/19 [00:09<00:07,  1.09it/s][A 58%|█████▊    | 11/19 [00:10<00:07,  1.08it/s]
+Total progress:  63%|██████▎   | 12/19 [00:10<00:06,  1.10it/s][A 63%|██████▎   | 12/19 [00:10<00:06,  1.09it/s]
+Total progress:  68%|██████▊   | 13/19 [00:10<00:05,  1.09it/s][A 68%|██████▊   | 13/19 [00:11<00:05,  1.09it/s]
+Total progress:  74%|███████▎  | 14/19 [00:11<00:04,  1.09it/s][A 74%|███████▎  | 14/19 [00:12<00:04,  1.08it/s]
+Total progress:  79%|███████▉  | 15/19 [00:12<00:03,  1.08it/s][A 79%|███████▉  | 15/19 [00:13<00:03,  1.08it/s]
+Total progress:  84%|████████▍ | 16/19 [00:13<00:02,  1.08it/s][A 84%|████████▍ | 16/19 [00:14<00:02,  1.08it/s]
+Total progress:  89%|████████▉ | 17/19 [00:14<00:01,  1.08it/s][A 89%|████████▉ | 17/19 [00:15<00:01,  1.08it/s]
+Total progress:  95%|█████████▍| 18/19 [00:15<00:00,  1.08it/s][A 95%|█████████▍| 18/19 [00:16<00:00,  1.08it/s]
+Total progress: 100%|██████████| 19/19 [00:16<00:00,  1.08it/s][A100%|██████████| 19/19 [00:17<00:00,  1.08it/s]100%|██████████| 19/19 [00:17<00:00,  1.09it/s]
+[Unload] Trying to free 8712.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9416.58 MB ... Done.
+*** Error running postprocess_batch_list: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 916, in postprocess_batch_list
+        script.postprocess_batch_list(p, pp, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 567, in postprocess_batch_list
+        self.process_unit_after_every_sampling(p, unit, self.current_params[i], pp, *args, **kwargs)
+    KeyError: 0
+
+---
+
+Total progress: 100%|██████████| 19/19 [00:19<00:00,  1.08it/s][ATotal progress: 100%|██████████| 19/19 [00:19<00:00,  1.03s/it]
+WARNING:root:Sampler Scheduler autocorrection: "Euler a" -> "Euler a", "None" -> "Automatic"
+2026-02-26 17:21:27,399 - ControlNet - [0;32mINFO[0m - ControlNet Input Mode: InputMode.SIMPLE
+2026-02-26 17:21:27,400 - ControlNet - [0;32mINFO[0m - Using preprocessor: InsightFace+CLIP-H (IPAdapter)
+2026-02-26 17:21:27,400 - ControlNet - [0;32mINFO[0m - preprocessor resolution = 1024
+*** Error running process: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 566, in load_insight_face
+        from insightface.app import FaceAnalysis
+    ModuleNotFoundError: No module named 'insightface'
+
+    During handling of the above exception, another exception occurred:
+
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 844, in process
+        script.process(p, *script_args)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 554, in process
+        self.process_unit_after_click_generate(p, unit, params, *args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 328, in process_unit_after_click_generate
+        preprocessor_output = preprocessor(
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 46, in __call__
+        insightface=self.load_insightface(),
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 40, in load_insightface
+        self.cached_insightface = opInsightFaceLoader()[0]
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 568, in load_insight_face
+        raise Exception(e)
+    Exception: No module named 'insightface'
+
+---
+[Unload] Trying to free 7068.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9380.83 MB ... Done.
+*** Error running process_before_every_sampling: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 892, in process_before_every_sampling
+        script.process_before_every_sampling(p, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 561, in process_before_every_sampling
+        self.process_unit_before_every_sampling(p, unit, self.current_params[i], *args, **kwargs)
+    KeyError: 0
+
+---
+[Unload] Trying to free 1310.72 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9416.33 MB ... Done.
+  0%|          | 0/20 [00:00<?, ?it/s]
+Total progress:   0%|          | 0/20 [00:00<?, ?it/s][A  5%|▌         | 1/20 [00:00<00:17,  1.07it/s]
+Total progress:  10%|█         | 2/20 [00:00<00:08,  2.11it/s][A 10%|█         | 2/20 [00:01<00:16,  1.06it/s]
+Total progress:  15%|█▌        | 3/20 [00:01<00:11,  1.49it/s][A 15%|█▌        | 3/20 [00:02<00:16,  1.06it/s]
+Total progress:  20%|██        | 4/20 [00:02<00:12,  1.28it/s][A 20%|██        | 4/20 [00:03<00:15,  1.05it/s]
+Total progress:  25%|██▌       | 5/20 [00:03<00:12,  1.18it/s][A 25%|██▌       | 5/20 [00:04<00:14,  1.04it/s]
+Total progress:  30%|███       | 6/20 [00:04<00:12,  1.13it/s][A 30%|███       | 6/20 [00:05<00:13,  1.04it/s]
+Total progress:  35%|███▌      | 7/20 [00:05<00:11,  1.09it/s][A 35%|███▌      | 7/20 [00:06<00:12,  1.04it/s]
+Total progress:  40%|████      | 8/20 [00:06<00:11,  1.07it/s][A 40%|████      | 8/20 [00:07<00:11,  1.03it/s]
+Total progress:  45%|████▌     | 9/20 [00:07<00:10,  1.05it/s][A 45%|████▌     | 9/20 [00:08<00:10,  1.03it/s]
+Total progress:  50%|█████     | 10/20 [00:08<00:09,  1.04it/s][A 50%|█████     | 10/20 [00:09<00:09,  1.02it/s]
+Total progress:  55%|█████▌    | 11/20 [00:09<00:08,  1.03it/s][A 55%|█████▌    | 11/20 [00:10<00:08,  1.02it/s]
+Total progress:  60%|██████    | 12/20 [00:10<00:07,  1.02it/s][A 60%|██████    | 12/20 [00:11<00:07,  1.01it/s]
+Total progress:  65%|██████▌   | 13/20 [00:11<00:06,  1.02it/s][A 65%|██████▌   | 13/20 [00:12<00:06,  1.01it/s]
+Total progress:  70%|███████   | 14/20 [00:12<00:05,  1.01it/s][A 70%|███████   | 14/20 [00:13<00:05,  1.01it/s]
+Total progress:  75%|███████▌  | 15/20 [00:13<00:04,  1.00it/s][A 75%|███████▌  | 15/20 [00:14<00:04,  1.00it/s]
+Total progress:  80%|████████  | 16/20 [00:14<00:04,  1.00s/it][A 80%|████████  | 16/20 [00:15<00:04,  1.00s/it]
+Total progress:  85%|████████▌ | 17/20 [00:15<00:03,  1.01s/it][A 85%|████████▌ | 17/20 [00:16<00:03,  1.01s/it]
+Total progress:  90%|█████████ | 18/20 [00:16<00:02,  1.01s/it][A 90%|█████████ | 18/20 [00:17<00:02,  1.01s/it]
+Total progress:  95%|█████████▌| 19/20 [00:17<00:01,  1.02s/it][A 95%|█████████▌| 19/20 [00:18<00:01,  1.02s/it]
+Total progress: 100%|██████████| 20/20 [00:18<00:00,  1.02s/it][A100%|██████████| 20/20 [00:19<00:00,  1.02s/it]100%|██████████| 20/20 [00:19<00:00,  1.01it/s]
+[Unload] Trying to free 8712.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9415.83 MB ... Done.
+*** Error running postprocess_batch_list: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 916, in postprocess_batch_list
+        script.postprocess_batch_list(p, pp, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 567, in postprocess_batch_list
+        self.process_unit_after_every_sampling(p, unit, self.current_params[i], pp, *args, **kwargs)
+    KeyError: 0
+
+---
+
+Total progress: 100%|██████████| 20/20 [00:22<00:00,  1.02s/it][ATotal progress: 100%|██████████| 20/20 [00:22<00:00,  1.11s/it]
+WARNING:root:Sampler Scheduler autocorrection: "Euler a" -> "Euler a", "None" -> "Automatic"
+2026-02-26 17:21:52,341 - ControlNet - [0;32mINFO[0m - ControlNet Input Mode: InputMode.SIMPLE
+2026-02-26 17:21:52,342 - ControlNet - [0;32mINFO[0m - Using preprocessor: InsightFace+CLIP-H (IPAdapter)
+2026-02-26 17:21:52,342 - ControlNet - [0;32mINFO[0m - preprocessor resolution = 1024
+*** Error running process: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 566, in load_insight_face
+        from insightface.app import FaceAnalysis
+    ModuleNotFoundError: No module named 'insightface'
+
+    During handling of the above exception, another exception occurred:
+
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 844, in process
+        script.process(p, *script_args)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 554, in process
+        self.process_unit_after_click_generate(p, unit, params, *args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 328, in process_unit_after_click_generate
+        preprocessor_output = preprocessor(
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 46, in __call__
+        insightface=self.load_insightface(),
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 40, in load_insightface
+        self.cached_insightface = opInsightFaceLoader()[0]
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 568, in load_insight_face
+        raise Exception(e)
+    Exception: No module named 'insightface'
+
+---
+[Unload] Trying to free 7068.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9380.08 MB ... Done.
+*** Error running process_before_every_sampling: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 892, in process_before_every_sampling
+        script.process_before_every_sampling(p, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 561, in process_before_every_sampling
+        self.process_unit_before_every_sampling(p, unit, self.current_params[i], *args, **kwargs)
+    KeyError: 0
+
+---
+[Unload] Trying to free 1310.72 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9415.57 MB ... Done.
+  0%|          | 0/22 [00:00<?, ?it/s]
+Total progress:   0%|          | 0/22 [00:00<?, ?it/s][A  5%|▍         | 1/22 [00:01<00:21,  1.03s/it]
+Total progress:   9%|▉         | 2/22 [00:01<00:10,  1.91it/s][A  9%|▉         | 2/22 [00:02<00:20,  1.04s/it]
+Total progress:  14%|█▎        | 3/22 [00:02<00:14,  1.34it/s][A 14%|█▎        | 3/22 [00:03<00:19,  1.04s/it]
+Total progress:  18%|█▊        | 4/22 [00:03<00:15,  1.16it/s][A 18%|█▊        | 4/22 [00:04<00:18,  1.05s/it]
+Total progress:  23%|██▎       | 5/22 [00:04<00:15,  1.07it/s][A 23%|██▎       | 5/22 [00:05<00:17,  1.06s/it]
+Total progress:  27%|██▋       | 6/22 [00:05<00:15,  1.03it/s][A 27%|██▋       | 6/22 [00:06<00:16,  1.06s/it]
+Total progress:  32%|███▏      | 7/22 [00:06<00:15,  1.00s/it][A 32%|███▏      | 7/22 [00:07<00:15,  1.06s/it]
+Total progress:  36%|███▋      | 8/22 [00:07<00:14,  1.03s/it][A 36%|███▋      | 8/22 [00:08<00:14,  1.07s/it]
+Total progress:  41%|████      | 9/22 [00:08<00:13,  1.04s/it][A 41%|████      | 9/22 [00:09<00:13,  1.07s/it]
+Total progress:  45%|████▌     | 10/22 [00:09<00:12,  1.05s/it][A 45%|████▌     | 10/22 [00:10<00:12,  1.07s/it]
+Total progress:  50%|█████     | 11/22 [00:10<00:11,  1.06s/it][A 50%|█████     | 11/22 [00:11<00:11,  1.08s/it]
+Total progress:  55%|█████▍    | 12/22 [00:11<00:10,  1.07s/it][A 55%|█████▍    | 12/22 [00:12<00:10,  1.08s/it]
+Total progress:  59%|█████▉    | 13/22 [00:12<00:09,  1.07s/it][A 59%|█████▉    | 13/22 [00:13<00:09,  1.08s/it]
+Total progress:  64%|██████▎   | 14/22 [00:13<00:08,  1.07s/it][A 64%|██████▎   | 14/22 [00:14<00:08,  1.08s/it]
+Total progress:  68%|██████▊   | 15/22 [00:14<00:07,  1.07s/it][A 68%|██████▊   | 15/22 [00:16<00:07,  1.08s/it]
+Total progress:  73%|███████▎  | 16/22 [00:16<00:06,  1.08s/it][A 73%|███████▎  | 16/22 [00:17<00:06,  1.08s/it]
+Total progress:  77%|███████▋  | 17/22 [00:17<00:05,  1.07s/it][A 77%|███████▋  | 17/22 [00:18<00:05,  1.07s/it]
+Total progress:  82%|████████▏ | 18/22 [00:18<00:04,  1.07s/it][A 82%|████████▏ | 18/22 [00:19<00:04,  1.07s/it]
+Total progress:  86%|████████▋ | 19/22 [00:19<00:03,  1.07s/it][A 86%|████████▋ | 19/22 [00:20<00:03,  1.07s/it]
+Total progress:  91%|█████████ | 20/22 [00:20<00:02,  1.06s/it][A 91%|█████████ | 20/22 [00:21<00:02,  1.07s/it]
+Total progress:  95%|█████████▌| 21/22 [00:21<00:01,  1.06s/it][A 95%|█████████▌| 21/22 [00:22<00:01,  1.06s/it]
+Total progress: 100%|██████████| 22/22 [00:22<00:00,  1.05s/it][A100%|██████████| 22/22 [00:23<00:00,  1.05s/it]100%|██████████| 22/22 [00:23<00:00,  1.07s/it]
+[Unload] Trying to free 8712.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9415.07 MB ... Done.
+*** Error running postprocess_batch_list: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 916, in postprocess_batch_list
+        script.postprocess_batch_list(p, pp, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 567, in postprocess_batch_list
+        self.process_unit_after_every_sampling(p, unit, self.current_params[i], pp, *args, **kwargs)
+    KeyError: 0
+
+---
+
+Total progress: 100%|██████████| 22/22 [00:25<00:00,  1.05s/it][ATotal progress: 100%|██████████| 22/22 [00:25<00:00,  1.17s/it]
+WARNING:root:Sampler Scheduler autocorrection: "Euler a" -> "Euler a", "None" -> "Automatic"
+2026-02-26 17:22:21,036 - ControlNet - [0;32mINFO[0m - ControlNet Input Mode: InputMode.SIMPLE
+2026-02-26 17:22:21,037 - ControlNet - [0;32mINFO[0m - Using preprocessor: InsightFace+CLIP-H (IPAdapter)
+2026-02-26 17:22:21,037 - ControlNet - [0;32mINFO[0m - preprocessor resolution = 1024
+*** Error running process: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 566, in load_insight_face
+        from insightface.app import FaceAnalysis
+    ModuleNotFoundError: No module named 'insightface'
+
+    During handling of the above exception, another exception occurred:
+
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 844, in process
+        script.process(p, *script_args)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 554, in process
+        self.process_unit_after_click_generate(p, unit, params, *args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 328, in process_unit_after_click_generate
+        preprocessor_output = preprocessor(
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 46, in __call__
+        insightface=self.load_insightface(),
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 40, in load_insightface
+        self.cached_insightface = opInsightFaceLoader()[0]
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 568, in load_insight_face
+        raise Exception(e)
+    Exception: No module named 'insightface'
+
+---
+[Unload] Trying to free 7068.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9379.32 MB ... Done.
+*** Error running process_before_every_sampling: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 892, in process_before_every_sampling
+        script.process_before_every_sampling(p, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 561, in process_before_every_sampling
+        self.process_unit_before_every_sampling(p, unit, self.current_params[i], *args, **kwargs)
+    KeyError: 0
+
+---
+[Unload] Trying to free 1310.72 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9414.82 MB ... Done.
+  0%|          | 0/23 [00:00<?, ?it/s]
+Total progress:   0%|          | 0/23 [00:00<?, ?it/s][A  4%|▍         | 1/23 [00:01<00:22,  1.00s/it]
+Total progress:   9%|▊         | 2/23 [00:01<00:10,  1.97it/s][A  9%|▊         | 2/23 [00:02<00:21,  1.01s/it]
+Total progress:  13%|█▎        | 3/23 [00:02<00:14,  1.39it/s][A 13%|█▎        | 3/23 [00:03<00:20,  1.01s/it]
+Total progress:  17%|█▋        | 4/23 [00:03<00:15,  1.21it/s][A 17%|█▋        | 4/23 [00:04<00:19,  1.01s/it]
+Total progress:  22%|██▏       | 5/23 [00:04<00:16,  1.12it/s][A 22%|██▏       | 5/23 [00:05<00:18,  1.01s/it]
+Total progress:  26%|██▌       | 6/23 [00:05<00:15,  1.07it/s][A 26%|██▌       | 6/23 [00:06<00:17,  1.01s/it]
+Total progress:  30%|███       | 7/23 [00:06<00:15,  1.05it/s][A 30%|███       | 7/23 [00:07<00:16,  1.01s/it]
+Total progress:  35%|███▍      | 8/23 [00:07<00:14,  1.03it/s][A 35%|███▍      | 8/23 [00:08<00:15,  1.01s/it]
+Total progress:  39%|███▉      | 9/23 [00:08<00:13,  1.02it/s][A 39%|███▉      | 9/23 [00:09<00:14,  1.01s/it]
+Total progress:  43%|████▎     | 10/23 [00:09<00:12,  1.01it/s][A 43%|████▎     | 10/23 [00:10<00:13,  1.01s/it]
+Total progress:  48%|████▊     | 11/23 [00:10<00:11,  1.01it/s][A 48%|████▊     | 11/23 [00:11<00:12,  1.01s/it]
+Total progress:  52%|█████▏    | 12/23 [00:11<00:10,  1.01it/s][A 52%|█████▏    | 12/23 [00:12<00:11,  1.00s/it]
+Total progress:  57%|█████▋    | 13/23 [00:12<00:09,  1.00it/s][A 57%|█████▋    | 13/23 [00:13<00:10,  1.00s/it]
+Total progress:  61%|██████    | 14/23 [00:13<00:08,  1.00it/s][A 61%|██████    | 14/23 [00:14<00:09,  1.00s/it]
+Total progress:  65%|██████▌   | 15/23 [00:14<00:07,  1.01it/s][A 65%|██████▌   | 15/23 [00:15<00:07,  1.00it/s]
+Total progress:  70%|██████▉   | 16/23 [00:15<00:06,  1.01it/s][A 70%|██████▉   | 16/23 [00:16<00:06,  1.00it/s]
+Total progress:  74%|███████▍  | 17/23 [00:16<00:05,  1.01it/s][A 74%|███████▍  | 17/23 [00:17<00:05,  1.00it/s]
+Total progress:  78%|███████▊  | 18/23 [00:17<00:04,  1.01it/s][A 78%|███████▊  | 18/23 [00:18<00:04,  1.00it/s]
+Total progress:  83%|████████▎ | 19/23 [00:18<00:03,  1.01it/s][A 83%|████████▎ | 19/23 [00:19<00:03,  1.01it/s]
+Total progress:  87%|████████▋ | 20/23 [00:19<00:02,  1.01it/s][A 87%|████████▋ | 20/23 [00:20<00:02,  1.01it/s]
+Total progress:  91%|█████████▏| 21/23 [00:20<00:01,  1.01it/s][A 91%|█████████▏| 21/23 [00:21<00:01,  1.01it/s]
+Total progress:  96%|█████████▌| 22/23 [00:21<00:00,  1.01it/s][A 96%|█████████▌| 22/23 [00:22<00:00,  1.01it/s]
+Total progress: 100%|██████████| 23/23 [00:22<00:00,  1.01it/s][A100%|██████████| 23/23 [00:23<00:00,  1.01it/s]100%|██████████| 23/23 [00:23<00:00,  1.00s/it]
+[Unload] Trying to free 8712.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9416.58 MB ... Done.
+*** Error running postprocess_batch_list: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 916, in postprocess_batch_list
+        script.postprocess_batch_list(p, pp, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 567, in postprocess_batch_list
+        self.process_unit_after_every_sampling(p, unit, self.current_params[i], pp, *args, **kwargs)
+    KeyError: 0
+
+---
+
+Total progress: 100%|██████████| 23/23 [00:25<00:00,  1.01it/s][ATotal progress: 100%|██████████| 23/23 [00:25<00:00,  1.10s/it]
+WARNING:root:Sampler Scheduler autocorrection: "Euler a" -> "Euler a", "None" -> "Automatic"
+2026-02-26 17:22:49,334 - ControlNet - [0;32mINFO[0m - ControlNet Input Mode: InputMode.SIMPLE
+2026-02-26 17:22:49,335 - ControlNet - [0;32mINFO[0m - Using preprocessor: InsightFace+CLIP-H (IPAdapter)
+2026-02-26 17:22:49,335 - ControlNet - [0;32mINFO[0m - preprocessor resolution = 1024
+*** Error running process: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 566, in load_insight_face
+        from insightface.app import FaceAnalysis
+    ModuleNotFoundError: No module named 'insightface'
+
+    During handling of the above exception, another exception occurred:
+
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 844, in process
+        script.process(p, *script_args)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 554, in process
+        self.process_unit_after_click_generate(p, unit, params, *args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 328, in process_unit_after_click_generate
+        preprocessor_output = preprocessor(
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 46, in __call__
+        insightface=self.load_insightface(),
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/scripts/forge_ipadapter.py", line 40, in load_insightface
+        self.cached_insightface = opInsightFaceLoader()[0]
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_ipadapter/lib_ipadapter/IPAdapterPlus.py", line 568, in load_insight_face
+        raise Exception(e)
+    Exception: No module named 'insightface'
+
+---
+[Unload] Trying to free 7068.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9380.83 MB ... Done.
+*** Error running process_before_every_sampling: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 892, in process_before_every_sampling
+        script.process_before_every_sampling(p, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 561, in process_before_every_sampling
+        self.process_unit_before_every_sampling(p, unit, self.current_params[i], *args, **kwargs)
+    KeyError: 0
+
+---
+[Unload] Trying to free 1310.72 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9416.33 MB ... Done.
+  0%|          | 0/25 [00:00<?, ?it/s]
+Total progress:   0%|          | 0/25 [00:00<?, ?it/s][A  4%|▍         | 1/25 [00:00<00:23,  1.03it/s]
+Total progress:   8%|▊         | 2/25 [00:00<00:11,  2.04it/s][A  8%|▊         | 2/25 [00:01<00:22,  1.02it/s]
+Total progress:  12%|█▏        | 3/25 [00:01<00:15,  1.43it/s][A 12%|█▏        | 3/25 [00:02<00:21,  1.02it/s]
+Total progress:  16%|█▌        | 4/25 [00:02<00:16,  1.24it/s][A 16%|█▌        | 4/25 [00:03<00:20,  1.01it/s]
+Total progress:  20%|██        | 5/25 [00:03<00:17,  1.15it/s][A 20%|██        | 5/25 [00:04<00:19,  1.01it/s]
+Total progress:  24%|██▍       | 6/25 [00:04<00:17,  1.10it/s][A 24%|██▍       | 6/25 [00:05<00:18,  1.01it/s]
+Total progress:  28%|██▊       | 7/25 [00:05<00:16,  1.07it/s][A 28%|██▊       | 7/25 [00:06<00:17,  1.01it/s]
+Total progress:  32%|███▏      | 8/25 [00:06<00:16,  1.04it/s][A 32%|███▏      | 8/25 [00:07<00:16,  1.01it/s]
+Total progress:  36%|███▌      | 9/25 [00:07<00:15,  1.03it/s][A 36%|███▌      | 9/25 [00:08<00:15,  1.00it/s]
+Total progress:  40%|████      | 10/25 [00:08<00:14,  1.02it/s][A 40%|████      | 10/25 [00:09<00:15,  1.00s/it]
+Total progress:  44%|████▍     | 11/25 [00:09<00:13,  1.01it/s][A 44%|████▍     | 11/25 [00:10<00:14,  1.00s/it]
+Total progress:  48%|████▊     | 12/25 [00:10<00:12,  1.00it/s][A 48%|████▊     | 12/25 [00:11<00:13,  1.01s/it]
+Total progress:  52%|█████▏    | 13/25 [00:11<00:12,  1.00s/it][A 52%|█████▏    | 13/25 [00:12<00:12,  1.01s/it]
+Total progress:  56%|█████▌    | 14/25 [00:12<00:11,  1.00s/it][A 56%|█████▌    | 14/25 [00:13<00:11,  1.01s/it]
+Total progress:  60%|██████    | 15/25 [00:14<00:10,  1.01s/it][A 60%|██████    | 15/25 [00:14<00:10,  1.01s/it]
+Total progress:  64%|██████▍   | 16/25 [00:15<00:09,  1.01s/it][A 64%|██████▍   | 16/25 [00:15<00:09,  1.01s/it]
+Total progress:  68%|██████▊   | 17/25 [00:16<00:08,  1.01s/it][A 68%|██████▊   | 17/25 [00:16<00:08,  1.01s/it]
+Total progress:  72%|███████▏  | 18/25 [00:17<00:07,  1.01s/it][A 72%|███████▏  | 18/25 [00:18<00:07,  1.01s/it]
+Total progress:  76%|███████▌  | 19/25 [00:18<00:06,  1.01s/it][A 76%|███████▌  | 19/25 [00:19<00:06,  1.01s/it]
+Total progress:  80%|████████  | 20/25 [00:19<00:05,  1.01s/it][A 80%|████████  | 20/25 [00:20<00:05,  1.01s/it]
+Total progress:  84%|████████▍ | 21/25 [00:20<00:04,  1.01s/it][A 84%|████████▍ | 21/25 [00:21<00:04,  1.01s/it]
+Total progress:  88%|████████▊ | 22/25 [00:21<00:03,  1.01s/it][A 88%|████████▊ | 22/25 [00:22<00:03,  1.01s/it]
+Total progress:  92%|█████████▏| 23/25 [00:22<00:02,  1.02s/it][A 92%|█████████▏| 23/25 [00:23<00:02,  1.02s/it]
+Total progress:  96%|█████████▌| 24/25 [00:23<00:01,  1.02s/it][A 96%|█████████▌| 24/25 [00:24<00:01,  1.02s/it]
+Total progress: 100%|██████████| 25/25 [00:24<00:00,  1.02s/it][A100%|██████████| 25/25 [00:25<00:00,  1.02s/it]100%|██████████| 25/25 [00:25<00:00,  1.01s/it]
+[Unload] Trying to free 8712.00 MB for cuda:0 with 1 models keep loaded ... Current free memory is 9415.83 MB ... Done.
+*** Error running postprocess_batch_list: /content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py
+    Traceback (most recent call last):
+      File "/content/stable-diffusion-webui-forge/modules/scripts.py", line 916, in postprocess_batch_list
+        script.postprocess_batch_list(p, pp, *script_args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/venv/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+        return func(*args, **kwargs)
+      File "/content/stable-diffusion-webui-forge/extensions-builtin/sd_forge_controlnet/scripts/controlnet.py", line 567, in postprocess_batch_list
+        self.process_unit_after_every_sampling(p, unit, self.current_params[i], pp, *args, **kwargs)
+    KeyError: 0
+
+---
+
+Total progress: 100%|██████████| 25/25 [00:27<00:00,  1.02s/it][ATotal progress: 100%|██████████| 25/25 [00:27<00:00,  1.10s/it]
